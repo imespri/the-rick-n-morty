@@ -1,0 +1,12 @@
+@use "../../../styles/constants" as const;
+
+.header {
+  background-color: const.$color-accent;
+}
+
+.header__wrapper {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

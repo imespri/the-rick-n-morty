@@ -10,7 +10,7 @@
 
 .navigation__link {
   color: const.$color-font-light-regular;
-  font-weight: bold;
+  font-weight: const.$font-weight-regular;
   text-decoration: none;
   text-transform: uppercase;
   transition: const.$transition;

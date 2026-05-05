@@ -1,7 +1,11 @@
-@use "./constants";
+@use "./constants" as const;
 
 html {
   font-family: Futura, sans-serif;
+}
+
+body {
+  background-color: const.$color-font-dark-regular;
 }
 
 .wrapper {

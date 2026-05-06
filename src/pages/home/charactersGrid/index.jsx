@@ -3,6 +3,7 @@ import "./characters-grid.scss";
 import { CharacterCard } from "../characterCard";
 
 export const CharactersGrid = () => {
+  // TODO: Временная затычка
   const characters = [
     {
       id: 1,
@@ -54,5 +55,5 @@ export const CharactersGrid = () => {
     return <CharacterCard key={item.id} character={item} />;
   });
 
-  return <div className="characters-grid">{cards}</div>;
+  return <div className="wrapper characters-grid">{cards}</div>;
 };

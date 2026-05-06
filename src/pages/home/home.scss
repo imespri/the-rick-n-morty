@@ -14,7 +14,7 @@
 
 .promo__header {
   margin-top: 100px;
-  font-size: 72px;
+  font-size: map-get(const.$font-size, 4xl);
   font-weight: const.$font-weight-bold;
   cursor: default;
 }

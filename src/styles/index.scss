@@ -10,6 +10,15 @@ body {
   background-color: const.$color-font-dark-regular;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 1200px;

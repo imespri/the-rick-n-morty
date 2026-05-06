@@ -1,0 +1,63 @@
+@use "../../../styles/constants" as const;
+
+.character-card {
+  width: 50%;
+  padding: 10px;
+  display: flex;
+  gap: 20px;
+  font-size: map-get(const.$font-size, s);
+  color: const.$color-font-light-regular;
+  background-color: const.$color-card-background;
+  border-radius: const.$border-radius-lg;
+}
+
+.character-card__image {
+  width: 150px;
+  border-radius: const.$border-radius-md;
+}
+
+.character-card__column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.character-card__header {
+  margin: 0;
+  padding: 0;
+  font-size: map-get(const.$font-size, l);
+  font-weight: const.$font-weight-bold;
+}
+
+.character-card__tag-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  list-style: none;
+}
+
+.character-card__tag {
+  padding: 5px 10px;
+  background-color: const.$color-tag-default;
+  color: const.$color-font-light-regular;
+  border: 1px solid const.$color-tag-default;
+  border-radius: const.$border-radius-md;
+}
+
+.character-card__description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.character-card__property {
+  margin: 0;
+}
+
+.character-card__title {
+  padding-right: 10px;
+  color: const.$color-tag-default;
+  font-weight: const.$font-weight-regular;
+  text-transform: uppercase;
+}

@@ -51,14 +51,7 @@ export const CharactersGrid = () => {
   ];
 
   const cards = characters.map((item) => {
-    return (
-      <CharacterCard
-        name={item.name}
-        status={item.status}
-        species={item.species}
-        key={item.id}
-      />
-    );
+    return <CharacterCard key={item.id} character={item} />;
   });
 
   return <div className="characters-grid">{cards}</div>;

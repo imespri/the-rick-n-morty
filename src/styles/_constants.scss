@@ -1,5 +1,7 @@
 // ======================= VALUE ==========================
 
+$border-radius-lg: 12px;
+$border-radius-md: 6px;
 $duration: 0.2s;
 $transition: all ease-in-out $duration;
 
@@ -10,7 +12,28 @@ $color-accent: #55b947;
 $color-font-light-regular: #f5f5f5;
 $color-font-dark-regular: #1d2124;
 
+$color-card-background: #353434;
+
+$color-tag-default: #b2b2b2;
+$color-tag-male: #3761f5;
+$color-tag-female: #f088be;
+$color-tag-genderless: #000000;
+$color-tag-alive: #55b947;
+$color-tag-dead: #cf112b;
+
 // ======================== FONT ==========================
 
 $font-weight-regular: 500;
 $font-weight-bold: 900;
+
+$font-size: (
+  4xl: 8.4rem,
+  3xl: 6.4rem,
+  2xl: 4.8rem,
+  xl: 3.2rem,
+  l: 2.4rem,
+  m: 1.8rem,
+  s: 1.6rem,
+  xs: 1.4rem,
+  2xs: 1.2rem,
+);

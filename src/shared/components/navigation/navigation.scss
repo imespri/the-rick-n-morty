@@ -1,5 +1,9 @@
 @use "../../../styles/constants" as const;
 
+.navigation {
+  font-size: map-get(const.$font-size, m);
+}
+
 .navigation__list {
   display: flex;
   margin: 0;

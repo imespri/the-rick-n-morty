@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../../../styles/constants" as const;
 @use "../../../styles/mixins" as mixins;
 
@@ -9,7 +10,7 @@
 .search__input {
   padding: 10px 40px;
   width: 100%;
-  font-size: map-get(const.$font-size, l);
+  font-size: map.get(const.$font-size, l);
   font-weight: const.$font-weight-regular;
   color: const.$color-font-dark-regular;
   box-sizing: border-box;

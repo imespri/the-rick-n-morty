@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "../../styles/constants" as const;
 @use "../../styles/mixins" as mixins;
 
@@ -14,7 +15,7 @@
 
 .promo__header {
   margin-top: 100px;
-  font-size: map-get(const.$font-size, 4xl);
+  font-size: map.get(const.$font-size, 4xl);
   font-weight: const.$font-weight-bold;
   cursor: default;
 }

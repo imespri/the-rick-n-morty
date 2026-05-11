@@ -15,7 +15,11 @@ export const HomePage = () => {
       setLoading(true);
 
       const result = await getCharactersByQuery(charactersQuery);
-      setCharacters(result.results);
+
+      Array.isArray(result.results)
+        ? setCharacters(result.results)
+        : alert("Not found"); // TODO Временная затычка
+
       setLoading(false);
     })();
   }, [charactersQuery]);

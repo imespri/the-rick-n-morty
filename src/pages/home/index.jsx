@@ -7,26 +7,26 @@ import { getCharactersByQuery } from "../../services";
 
 export const HomePage = () => {
   const [characters, setCharacters] = useState([]);
-  const [search, setSearch] = useState("");
+  const [charactersQuery, setCharactersQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
 
-      const result = await getCharactersByQuery(search);
+      const result = await getCharactersByQuery(charactersQuery);
       setCharacters(result.results);
       setLoading(false);
     })();
-  }, [search]);
+  }, [charactersQuery]);
 
-  const getSearch = (value) => setSearch(value);
+  const getCharactersQuery = (value) => setCharactersQuery(value);
 
   return (
     <>
       <div className="promo">
         <h1 className="promo__header">The Rick and Morty</h1>
-        <Search getSearch={getSearch} />
+        <Search getCharactersQuery={getCharactersQuery} />
       </div>
       {loading ? <Spinner /> : <CharactersGrid characters={characters} />}
     </>

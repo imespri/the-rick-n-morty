@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./search.scss";
 
-export const Search = ({ getSearch }) => {
+export const Search = ({ getCharactersQuery }) => {
   const [value, setValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getSearch(value);
+    getCharactersQuery(value);
   };
 
   return (

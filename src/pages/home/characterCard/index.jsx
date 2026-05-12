@@ -1,9 +1,14 @@
 import React from "react";
 import "./character-card.scss";
 
-export const CharacterCard = ({ character }) => {
+export const CharacterCard = ({ character, getCharacterId, openModal }) => {
+  const f = () => {
+    getCharacterId(character.id);
+    openModal();
+  };
+
   return (
-    <div className="character-card">
+    <div className="character-card" onClick={f}>
       <div>
         <img
           className="character-card__image"

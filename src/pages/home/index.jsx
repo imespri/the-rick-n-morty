@@ -4,6 +4,7 @@ import { Search } from "./search";
 import { CharactersGrid } from "./charactersGrid";
 import { Spinner } from "../../shared/components/spinner";
 import { getCharactersByQuery } from "../../services";
+import CharacterModal from "./characterModal";
 
 export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
   // Search
@@ -35,10 +36,8 @@ export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
 
   const getCharacterId = (id) => {
     const value = characters.filter((item) => item.id === id);
-    setCharacter(value);
+    setCharacter(...value);
   };
-
-  console.log(character);
 
   return (
     <>
@@ -54,6 +53,9 @@ export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
           getCharacterId={getCharacterId}
           openModal={openModal}
         />
+      )}
+      {visibilityModal && (
+        <CharacterModal character={character} closeModal={closeModal} />
       )}
     </>
   );

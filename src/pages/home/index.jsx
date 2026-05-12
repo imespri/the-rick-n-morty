@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Search } from "./search";
 import { CharactersGrid } from "./charactersGrid";
 import { Spinner } from "../../shared/components/spinner";
-import { getCharactersByQuery } from "../../services";
+import { getCharactersByQuery, getEpisodeById } from "../../services";
 import CharacterModal from "./characterModal";
 
 export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
@@ -14,6 +14,7 @@ export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
   // By ID
   const [characterId, setCharacterId] = useState(null);
   const [character, setCharacter] = useState(null);
+  const [episodes, setEpisodes] = useState([]);
 
   // Additional
   const [loading, setLoading] = useState(true);
@@ -35,9 +36,41 @@ export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
   const getCharactersQuery = (value) => setCharactersQuery(value);
 
   const getCharacterId = (id) => {
-    const value = characters.filter((item) => item.id === id);
-    setCharacter(...value);
+    const value = characters.filter((item) => item.id === id)[0];
+    setCharacter(value);
+    setCharacterId(value.id);
   };
+
+  useEffect(() => {
+    (async () => {
+      {
+        const filterData = (obj) => {
+          return {
+            episode: obj.episode,
+            name: obj.name,
+            airDate: obj.air_date,
+          };
+        };
+
+        if (character !== null) {
+          let firstEpisode = character.episode[0];
+          let lastEpisode = character.episode[character.episode.length - 1];
+
+          firstEpisode = firstEpisode.split("/");
+          firstEpisode = firstEpisode[firstEpisode.length - 1];
+
+          lastEpisode = lastEpisode.split("/");
+          lastEpisode = lastEpisode[lastEpisode.length - 1];
+
+          const episodes = `${firstEpisode},${lastEpisode}`;
+
+          const res = await getEpisodeById(episodes);
+          const a = res.map((item) => filterData(item));
+          setEpisodes(a);
+        }
+      }
+    })();
+  }, [characterId]);
 
   return (
     <>
@@ -55,7 +88,11 @@ export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
         />
       )}
       {visibilityModal && (
-        <CharacterModal character={character} closeModal={closeModal} />
+        <CharacterModal
+          character={character}
+          closeModal={closeModal}
+          episodes={episodes}
+        />
       )}
     </>
   );

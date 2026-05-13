@@ -1,12 +1,9 @@
-import "./home.scss";
-import React, { useState, useEffect } from "react";
-import { Search } from "../../features/Characters/CharactersSearch/CharactersSearch";
-import { CharactersGrid } from "./charactersGrid";
-import { Spinner } from "../../shared/components/spinner";
-import { getCharactersByQuery, getEpisodeById } from "../../services";
-import CharacterModal from "./characterModal";
+import "./Characters.scss";
+import { useState, useEffect } from "react";
+import { CharactersSearch } from "./CharactersSearch/CharactersSearch";
 
-export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
+export function Characters() {
+  // -----------------------------
   // Search
   const [characters, setCharacters] = useState([]);
   const [charactersQuery, setCharactersQuery] = useState("");
@@ -71,29 +68,14 @@ export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
       }
     })();
   }, [characterId]);
+  // -----------------------------
 
   return (
-    <>
-      <div className="promo">
-        <h1 className="promo__header">The Rick and Morty</h1>
-        <Search getCharactersQuery={getCharactersQuery} />
+    <div className="characters">
+      <div className="characters__promo">
+        <h1 className="characters__header">The Rick and Morty</h1>
+        <CharactersSearch getCharactersQuery={getCharactersQuery} />
       </div>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <CharactersGrid
-          characters={characters}
-          getCharacterId={getCharacterId}
-          openModal={openModal}
-        />
-      )}
-      {visibilityModal && (
-        <CharacterModal
-          character={character}
-          closeModal={closeModal}
-          episodes={episodes}
-        />
-      )}
-    </>
+    </div>
   );
-};
+}

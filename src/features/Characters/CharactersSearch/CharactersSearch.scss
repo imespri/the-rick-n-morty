@@ -1,13 +1,13 @@
 @use "sass:map";
-@use "../../../styles/constants" as const;
-@use "../../../styles/mixins" as mixins;
+@use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
 
-.search {
+.characters-search {
   width: 500px;
   position: relative;
 }
 
-.search__input {
+.characters-search__input {
   padding: 10px 40px;
   width: 100%;
   font-size: map.get(const.$font-size, l);
@@ -19,27 +19,19 @@
   cursor: pointer;
 }
 
-.search__icon--search {
-  @include mixins.icon-background(
-    24px,
-    24px,
-    "../../../assets/images/search.svg"
-  );
+.characters-search__icon--search {
+  @include mixins.icon-background(24px, 24px, "@/assets/images/search.svg");
   left: 10px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.search__icon--arrow {
-  @include mixins.icon-background(
-    24px,
-    24px,
-    "../../../assets/images/arrow.svg"
-  );
+.characters-search__icon--arrow {
+  @include mixins.icon-background(24px, 24px, "@/assets/images/arrow.svg");
 }
 
-.search__button {
+.characters-search__button {
   display: flex;
   justify-content: center;
   align-items: center;

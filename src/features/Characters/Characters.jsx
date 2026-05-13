@@ -1,9 +1,17 @@
 import "./Characters.scss";
 import { useState, useEffect } from "react";
 import { CharactersSearch } from "./CharactersSearch/CharactersSearch";
+import { CharactersGrid } from "./CharactersGrid/CharactersGrid";
+import { Spinner } from "@/components/Spinner/Spinner";
+import { getCharactersByQuery, getEpisodeById } from "@/services";
 
 export function Characters() {
   // -----------------------------
+  const [visibilityModal, setVisibilityModal] = useState(false);
+
+  const openModal = () => setVisibilityModal(true);
+  const closeModal = () => setVisibilityModal(false);
+
   // Search
   const [characters, setCharacters] = useState([]);
   const [charactersQuery, setCharactersQuery] = useState("");
@@ -76,6 +84,15 @@ export function Characters() {
         <h1 className="characters__header">The Rick and Morty</h1>
         <CharactersSearch getCharactersQuery={getCharactersQuery} />
       </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <CharactersGrid
+          characters={characters}
+          getCharacterId={getCharacterId}
+          openModal={openModal}
+        />
+      )}
     </div>
   );
 }

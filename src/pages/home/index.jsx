@@ -2,11 +2,16 @@ import "./home.scss";
 import React, { useState, useEffect } from "react";
 import { Search } from "../../features/Characters/CharactersSearch/CharactersSearch";
 import { CharactersGrid } from "./charactersGrid";
-import { Spinner } from "../../shared/components/spinner";
+import { Spinner } from "../../components/Spinner/Spinner";
 import { getCharactersByQuery, getEpisodeById } from "../../services";
 import CharacterModal from "./characterModal";
 
-export const HomePage = ({ visibilityModal, openModal, closeModal }) => {
+export const HomePage = () => {
+  const [visibilityModal, setVisibilityModal] = useState(false);
+
+  const openModal = () => setVisibilityModal(true);
+  const closeModal = () => setVisibilityModal(false);
+
   // Search
   const [characters, setCharacters] = useState([]);
   const [charactersQuery, setCharactersQuery] = useState("");

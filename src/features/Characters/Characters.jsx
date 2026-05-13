@@ -5,18 +5,33 @@ import { CharactersGrid } from "./CharactersGrid/CharactersGrid";
 import { CharacterModal } from "./CharacterModal/CharacterModal";
 import { Spinner } from "@/components/Spinner/Spinner";
 import { Shadow } from "@/components/Shadow/Shadow";
-import { getCharactersByQuery, getEpisodeById } from "@/services";
+import { fetchCharactersByQuery, fetchEpisodesById } from "@/services";
 
 export function Characters() {
+  const [characters, setCharacters] = useState([]);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+
+      const data = await fetchCharactersByQuery(query);
+
+      Array.isArray(data.results)
+        ? setCharacters(data.results)
+        : alert("Not found"); // TODO Временная затычка
+
+      setLoading(false);
+    })();
+  }, [query]);
+
+  const getQuery = (value) => setQuery(value);
+
   // -----------------------------
   const [visibilityModal, setVisibilityModal] = useState(false);
 
   const openModal = () => setVisibilityModal(true);
   const closeModal = () => setVisibilityModal(false);
-
-  // Search
-  const [characters, setCharacters] = useState([]);
-  const [charactersQuery, setCharactersQuery] = useState("");
 
   // By ID
   const [characterId, setCharacterId] = useState(null);
@@ -25,22 +40,6 @@ export function Characters() {
 
   // Additional
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-      setLoading(true);
-
-      const result = await getCharactersByQuery(charactersQuery);
-
-      Array.isArray(result.results)
-        ? setCharacters(result.results)
-        : alert("Not found"); // TODO Временная затычка
-
-      setLoading(false);
-    })();
-  }, [charactersQuery]);
-
-  const getCharactersQuery = (value) => setCharactersQuery(value);
 
   const getCharacterId = (id) => {
     const value = characters.filter((item) => item.id === id)[0];
@@ -71,7 +70,7 @@ export function Characters() {
 
           const episodes = `${firstEpisode},${lastEpisode}`;
 
-          const res = await getEpisodeById(episodes);
+          const res = await fetchEpisodesById(episodes);
           const a = res.map((item) => filterData(item));
           setEpisodes(a);
         }
@@ -84,7 +83,7 @@ export function Characters() {
     <div className="characters">
       <div className="characters__promo">
         <h1 className="characters__header">The Rick and Morty</h1>
-        <CharactersSearch getCharactersQuery={getCharactersQuery} />
+        <CharactersSearch getQuery={getQuery} />
       </div>
       {loading ? (
         <Spinner />

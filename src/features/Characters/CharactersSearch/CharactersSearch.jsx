@@ -1,12 +1,12 @@
 import "./CharactersSearch.scss";
 import { useState } from "react";
 
-export function CharactersSearch({ getCharactersQuery }) {
-  const [userQuery, setUserQuery] = useState("");
+export function CharactersSearch({ getQuery }) {
+  const [search, setSearch] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getCharactersQuery(userQuery);
+    getQuery(search);
   };
 
   return (
@@ -17,7 +17,7 @@ export function CharactersSearch({ getCharactersQuery }) {
         type="search"
         name="charactersSearch"
         placeholder="What do you want to find?"
-        onChange={(e) => setUserQuery(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
       />
       <button className="characters-search__button">
         <span className="characters-search__icon characters-search__icon--arrow" />

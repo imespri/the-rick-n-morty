@@ -1,6 +1,6 @@
 const API = "https://rickandmortyapi.com/api";
 
-export const getCharactersByQuery = async (query) => {
+export const fetchCharactersByQuery = async (query) => {
   try {
     const str = query === "" ? "" : `?name=${query}`;
     const response = await fetch(`${API}/character/${str}`);
@@ -10,7 +10,7 @@ export const getCharactersByQuery = async (query) => {
   }
 };
 
-export const getEpisodeById = async (id) => {
+export const fetchEpisodesById = async (id) => {
   try {
     const response = await fetch(`${API}/episode/${id}`);
     return await response.json();

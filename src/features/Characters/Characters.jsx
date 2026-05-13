@@ -4,6 +4,7 @@ import { CharactersSearch } from "./CharactersSearch/CharactersSearch";
 import { CharactersGrid } from "./CharactersGrid/CharactersGrid";
 import { CharacterModal } from "./CharacterModal/CharacterModal";
 import { Spinner } from "@/components/Spinner/Spinner";
+import { Shadow } from "@/components/Shadow/Shadow";
 import { getCharactersByQuery, getEpisodeById } from "@/services";
 
 export function Characters() {
@@ -101,6 +102,7 @@ export function Characters() {
           closeModal={closeModal}
         />
       )}
+      {visibilityModal && <Shadow closeModal={closeModal} />}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import "./CharacterModal.scss";
 
-export function CharacterModal({ character, episodes, closeModal }) {
-  console.log(character, episodes);
+export function CharacterModal({ characterWithEpisodes, closeModal }) {
+  const { character, episodes } = characterWithEpisodes;
 
   const episodesBlocks = episodes.map((item, index) => {
     let header = !index ? "First" : "Last";
@@ -17,7 +17,7 @@ export function CharacterModal({ character, episodes, closeModal }) {
           </li>
           <li className="character-modal__item">
             <span className="character-modal__title">Air date:</span>
-            {item.airDate}
+            {item.air_date}
           </li>
         </ul>
       </div>

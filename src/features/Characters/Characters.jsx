@@ -10,7 +10,11 @@ import { fetchCharactersByQuery, fetchEpisodesById } from "@/services";
 export function Characters() {
   const [characters, setCharacters] = useState([]);
   const [query, setQuery] = useState("");
+  const [cardId, setCardId] = useState(null);
+  const [characterWithEpisodes, setCharacterWithEpisodes] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  // Search Characters
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -27,56 +31,41 @@ export function Characters() {
 
   const getQuery = (value) => setQuery(value);
 
+  const handleCardClick = (id) => setCardId(id);
+
+  useEffect(() => {
+    (async () => {
+      const character = characters.find((item) => item.id === cardId);
+
+      const getId = (item) => {
+        const a = item.split("/");
+        return a[a.length - 1];
+      };
+
+      if (cardId !== null) {
+        const first = getId(character.episode[0]);
+        const last = getId(character.episode[character.episode.length - 1]);
+        const ids = `${first},${last}`;
+
+        const episodes = await fetchEpisodesById(ids);
+
+        setCharacterWithEpisodes({ character, episodes });
+
+        openModal();
+      }
+    })();
+  }, [cardId]);
+
+  // -----------------------------
+  // -----------------------------
+  // -----------------------------
+  // -----------------------------
   // -----------------------------
   const [visibilityModal, setVisibilityModal] = useState(false);
 
   const openModal = () => setVisibilityModal(true);
   const closeModal = () => setVisibilityModal(false);
 
-  // By ID
-  const [characterId, setCharacterId] = useState(null);
-  const [character, setCharacter] = useState(null);
-  const [episodes, setEpisodes] = useState([]);
-
-  // Additional
-  const [loading, setLoading] = useState(true);
-
-  const getCharacterId = (id) => {
-    const value = characters.filter((item) => item.id === id)[0];
-    setCharacter(value);
-    setCharacterId(value.id);
-  };
-
-  useEffect(() => {
-    (async () => {
-      {
-        const filterData = (obj) => {
-          return {
-            episode: obj.episode,
-            name: obj.name,
-            airDate: obj.air_date,
-          };
-        };
-
-        if (character !== null) {
-          let firstEpisode = character.episode[0];
-          let lastEpisode = character.episode[character.episode.length - 1];
-
-          firstEpisode = firstEpisode.split("/");
-          firstEpisode = firstEpisode[firstEpisode.length - 1];
-
-          lastEpisode = lastEpisode.split("/");
-          lastEpisode = lastEpisode[lastEpisode.length - 1];
-
-          const episodes = `${firstEpisode},${lastEpisode}`;
-
-          const res = await fetchEpisodesById(episodes);
-          const a = res.map((item) => filterData(item));
-          setEpisodes(a);
-        }
-      }
-    })();
-  }, [characterId]);
   // -----------------------------
 
   return (
@@ -90,14 +79,12 @@ export function Characters() {
       ) : (
         <CharactersGrid
           characters={characters}
-          getCharacterId={getCharacterId}
-          openModal={openModal}
+          handleCardClick={handleCardClick}
         />
       )}
       {visibilityModal && (
         <CharacterModal
-          character={character}
-          episodes={episodes}
+          characterWithEpisodes={characterWithEpisodes}
           closeModal={closeModal}
         />
       )}

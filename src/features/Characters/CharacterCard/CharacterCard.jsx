@@ -1,13 +1,11 @@
 import "./CharacterCard.scss";
 
-export function CharacterCard({ character, getCharacterId, openModal }) {
-  const open = () => {
-    getCharacterId(character.id);
-    openModal();
-  };
-
+export function CharacterCard({ character, handleCardClick }) {
   return (
-    <article className="character-card" onClick={open}>
+    <article
+      className="character-card"
+      onClick={() => handleCardClick(character.id)}
+    >
       <div>
         <img
           className="character-card__image"

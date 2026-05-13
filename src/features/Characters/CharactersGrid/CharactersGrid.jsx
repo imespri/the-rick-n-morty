@@ -1,5 +1,5 @@
 import "./CharactersGrid.scss";
-import { CharacterCard } from "@/pages/home/characterCard";
+import { CharacterCard } from "../CharacterCard/CharacterCard";
 
 export function CharactersGrid({ characters, getCharacterId, openModal }) {
   const cardsUI = characters.map((item) => (

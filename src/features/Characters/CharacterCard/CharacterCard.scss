@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "../../../styles/constants" as const;
+@use "@/styles/constants" as const;
 
 .character-card {
   width: calc(50% - 15px);

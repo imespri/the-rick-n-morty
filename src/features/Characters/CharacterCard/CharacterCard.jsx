@@ -1,14 +1,13 @@
-import React from "react";
-import "./character-card.scss";
+import "./CharacterCard.scss";
 
-export const CharacterCard = ({ character, getCharacterId, openModal }) => {
-  const f = () => {
+export function CharacterCard({ character, getCharacterId, openModal }) {
+  const open = () => {
     getCharacterId(character.id);
     openModal();
   };
 
   return (
-    <div className="character-card" onClick={f}>
+    <article className="character-card" onClick={open}>
       <div>
         <img
           className="character-card__image"
@@ -37,6 +36,6 @@ export const CharacterCard = ({ character, getCharacterId, openModal }) => {
           </p>
         </div>
       </div>
-    </div>
+    </article>
   );
-};
+}

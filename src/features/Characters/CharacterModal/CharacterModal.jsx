@@ -1,6 +1,6 @@
-import "./character-modal.scss";
+import "./CharacterModal.scss";
 
-const CharacterModal = ({ character, episodes, closeModal }) => {
+export function CharacterModal({ character, episodes, closeModal }) {
   console.log(character, episodes);
 
   const episodesBlocks = episodes.map((item, index) => {
@@ -70,6 +70,4 @@ const CharacterModal = ({ character, episodes, closeModal }) => {
       </div>
     </div>
   );
-};
-
-export default CharacterModal;
+}

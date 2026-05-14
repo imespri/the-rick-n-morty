@@ -41,15 +41,37 @@ export function Characters() {
 
     loadCharacters();
   }, [query]);
+  //   (async () => {
+  //     if (!selectedCharacterId) return;
+
+  //     const character = characters.find(
+  //       (item) => item.id === selectedCharacterId,
+  //     );
+
+  //     if (selectedCharacterId !== null) {
+  //       const first = extractIdFromUrl(character.episode[0]);
+  //       const last = extractIdFromUrl(
+  //         character.episode[character.episode.length - 1],
+  //       );
+  //       const ids = `${first},${last}`;
+
+  //       const episodes = await fetchEpisodesById(ids);
+
+  //       setCharacterWithEpisodes({ character, episodes });
+
+  //       openModal();
+  //     }
+  //   })();
+  // }, [selectedCharacterId]);
 
   useEffect(() => {
-    (async () => {
-      if (!selectedCharacterId) return;
+    if (!selectedCharacterId) return;
 
-      const character = characters.find(
-        (item) => item.id === selectedCharacterId,
-      );
+    const character = characters.find(
+      (item) => item.id === selectedCharacterId,
+    );
 
+    const loadEpisodes = async () => {
       if (selectedCharacterId !== null) {
         const first = extractIdFromUrl(character.episode[0]);
         const last = extractIdFromUrl(
@@ -60,10 +82,11 @@ export function Characters() {
         const episodes = await fetchEpisodesById(ids);
 
         setCharacterWithEpisodes({ character, episodes });
-
         openModal();
       }
-    })();
+    };
+
+    loadEpisodes();
   }, [selectedCharacterId]);
 
   return (

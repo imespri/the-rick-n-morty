@@ -26,17 +26,20 @@ export function Characters() {
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
-    (async () => {
+    const loadCharacters = async () => {
       setLoading(true);
 
-      const data = await fetchCharactersByQuery(query);
+      try {
+        const data = await fetchCharactersByQuery(query);
+        setCharacters(Array.isArray(data.results) ? data.results : []);
+      } catch (error) {
+        setCharacters([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      Array.isArray(data.results)
-        ? setCharacters(data.results)
-        : alert("Not found"); // TODO Временная затычка
-
-      setLoading(false);
-    })();
+    loadCharacters();
   }, [query]);
 
   useEffect(() => {

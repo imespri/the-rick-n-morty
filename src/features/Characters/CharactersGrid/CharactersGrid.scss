@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "@/styles/constants" as const;
+
 .characters__grid {
   padding: 60px 30px 100px 30px;
   display: flex;
@@ -5,4 +8,13 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 30px;
+}
+
+.characters__not-found {
+  margin-top: 60px;
+  text-align: center;
+  font-size: map.get(const.$font-size, xl);
+  font-weight: const.$font-weight-regular;
+  color: const.$color-accent;
+  cursor: default;
 }

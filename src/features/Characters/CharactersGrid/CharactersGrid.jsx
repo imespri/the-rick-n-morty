@@ -10,5 +10,14 @@ export function CharactersGrid({ characters, handleCharacterCardClick }) {
     />
   ));
 
-  return <section className="characters__grid wrapper">{cardsUI}</section>;
+  const noResultsUL = characters.length === 0 && (
+    <h3 className="characters__not-found">No results...</h3>
+  );
+
+  return (
+    <>
+      {noResultsUL}
+      <section className="characters__grid wrapper">{cardsUI}</section>;
+    </>
+  );
 }

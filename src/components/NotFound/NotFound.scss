@@ -1,0 +1,16 @@
+@use "@/styles/constants" as const;
+
+.not-found {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: const.$color-font-dark-regular;
+}
+
+.not-found__img {
+  width: 60%;
+  object-fit: cover;
+  transition: const.$transition;
+}

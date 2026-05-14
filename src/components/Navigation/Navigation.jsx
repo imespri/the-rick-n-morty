@@ -4,8 +4,9 @@ import { NavLink } from "react-router-dom";
 export function Navigation() {
   const createLinksUI = () => {
     const links = [
-      { to: "/", title: "Главная" },
-      { to: "/error-link", title: "Вторая" },
+      { to: "/", title: "Characters" },
+      { to: "/feedback", title: "Feedback" },
+      { to: "/error-link", title: "Error" },
     ];
 
     return links.map((item, i) => (

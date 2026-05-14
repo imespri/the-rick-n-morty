@@ -1,0 +1,37 @@
+@use "sass:map";
+@use "@/styles/constants" as const;
+@use "@/styles//mixins" as mixins;
+
+.feedback {
+  padding-bottom: 100px;
+  color: const.$color-font-light-regular;
+  font-size: map.get(const.$font-size, l);
+}
+
+.feedback__wrapper {
+  padding: 0 30px;
+}
+
+.feedback__img {
+  @include mixins.icon-background(375px, 100%, "@/assets/images/feedback.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.feedback__header {
+  margin: 60px 0 40px 0;
+  font-size: map.get(const.$font-size, xl);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.feedback__list {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  list-style: none;
+}

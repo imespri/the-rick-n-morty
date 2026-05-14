@@ -1,0 +1,219 @@
+@use "sass:map";
+@use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
+
+.feedback-form {
+  font-size: map.get(const.$font-size, m);
+  font-weight: 400;
+  background-color: const.$color-card-background;
+  border-radius: const.$border-radius-lg;
+  transition: const.$transition;
+}
+
+.feedback-form__header {
+  padding: 20px 0;
+  font-size: map.get(const.$font-size, l);
+  font-weight: 500;
+  text-align: center;
+  background: const.$background-image-accent;
+  border-radius: const.$border-radius-lg const.$border-radius-lg 0 0;
+}
+
+.feedback-form__container {
+  padding: 30px;
+}
+
+.feedback-form__form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  transition: const.$transition;
+}
+
+.feedback-form__section {
+  width: calc(50% - 15px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 60px;
+  transition: const.$transition;
+
+  &--wide {
+    margin-top: 30px;
+    width: 100%;
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+.feedback-form__line {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+
+  &--radio {
+    width: auto;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.feedback-form__radio-container {
+  display: flex;
+  gap: 30px;
+}
+
+// ===================== FORM ITEM ========================
+
+.feedback-form__label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &--file {
+    max-width: 300px;
+  }
+
+  &--short {
+    min-width: 125px;
+    max-width: 175px;
+  }
+}
+
+.feedback-form__item {
+  padding: 10px;
+  width: 100%;
+  color: const.$color-font-light-regular;
+  background-color: const.$color-font-dark-regular;
+  border: 2px solid const.$color-font-dark-regular;
+  border-radius: const.$border-radius-md;
+  box-sizing: border-box;
+  transition: const.$transition;
+  outline: none;
+
+  &:active,
+  &:focus {
+    border-color: const.$color-accent-2;
+  }
+
+  &:hover {
+    border-color: const.$color-accent-2;
+    cursor: pointer;
+  }
+}
+
+.feedback-form__rating {
+  opacity: 0.5;
+  transition: const.$transition;
+  cursor: pointer;
+}
+
+.feedback-form__check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.feedback-form__button {
+  padding: 10px 40px;
+  font-size: map.get(const.$font-size, m);
+  color: const.$color-font-light-regular;
+  background-color: const.$color-accent;
+  border: none;
+  border-radius: const.$border-radius-md;
+  transition: const.$transition;
+  cursor: pointer;
+
+  &:hover {
+    background-color: const.$color-accent-2;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    background-color: const.$color-accent;
+  }
+}
+
+// ====================== SPECIAL =========================
+
+.feedback-form__dropdown {
+  padding: 8px;
+}
+
+.feedback-form__textarea {
+  height: 170px;
+  resize: none;
+}
+
+input[type="date"] {
+  padding: 9px;
+  color-scheme: dark;
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+
+  &::-webkit-file-upload-button {
+    padding: 10px 20px;
+    background-color: const.$color-accent;
+    color: const.$color-font-light-regular;
+    border: 1px solid transparent;
+    border-radius: const.$border-radius-md;
+    cursor: pointer;
+    transition: const.$transition;
+    outline: none;
+
+    &:hover {
+      background-color: const.$color-accent-2;
+    }
+  }
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + .feedback-form__rating {
+    opacity: 1;
+  }
+}
+
+input[type="checkbox"] {
+  width: map.get(const.$font-size, s);
+  height: map.get(const.$font-size, s);
+  outline: none;
+}
+
+.empty {
+  display: inline-block;
+  height: 16px;
+}
+
+// ====================== SMILE =========================
+
+.icon--smile-good {
+  @include mixins.icon-background(40px, 40px, "@/assets/images/smile-good.svg");
+}
+
+.icon--smile-maybe {
+  @include mixins.icon-background(
+    40px,
+    40px,
+    "@/assets/images/smile-maybe.svg"
+  );
+}
+
+.icon--smile-bad {
+  @include mixins.icon-background(40px, 40px, "@/assets/images/smile-bad.svg");
+}

@@ -1,12 +1,12 @@
 import "./CharactersGrid.scss";
 import { CharacterCard } from "../CharacterCard/CharacterCard";
 
-export function CharactersGrid({ characters, handleCardClick }) {
+export function CharactersGrid({ characters, handleCharacterCardClick }) {
   const cardsUI = characters.map((item) => (
     <CharacterCard
       key={item.id}
       character={item}
-      handleCardClick={handleCardClick}
+      handleCharacterCardClick={handleCharacterCardClick}
     />
   ));
 

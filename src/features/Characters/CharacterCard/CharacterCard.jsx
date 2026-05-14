@@ -1,10 +1,10 @@
 import "./CharacterCard.scss";
 
-export function CharacterCard({ character, handleCardClick }) {
+export function CharacterCard({ character, handleCharacterCardClick }) {
   return (
     <article
       className="character-card"
-      onClick={() => handleCardClick(character.id)}
+      onClick={() => handleCharacterCardClick(character.id)}
     >
       <div>
         <img

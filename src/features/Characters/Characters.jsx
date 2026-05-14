@@ -7,14 +7,24 @@ import { Spinner } from "@/components/Spinner/Spinner";
 import { Shadow } from "@/components/Shadow/Shadow";
 import { fetchCharactersByQuery, fetchEpisodesById } from "@/services";
 
+const extractIdFromUrl = (item) => item.split("/").pop();
+
 export function Characters() {
   const [characters, setCharacters] = useState([]);
   const [query, setQuery] = useState("");
-  const [cardId, setCardId] = useState(null);
+  const [selectedCharacterId, setSelectedCharacterId] = useState(null);
   const [characterWithEpisodes, setCharacterWithEpisodes] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Search Characters
+  const handleSearch = (value) => setQuery(value);
+
+  const handleCharacterCardClick = (id) => setSelectedCharacterId(id);
+
+  const openModal = () => setIsModalOpen(true);
+
+  const closeModal = () => setIsModalOpen(false);
+
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -29,22 +39,19 @@ export function Characters() {
     })();
   }, [query]);
 
-  const getQuery = (value) => setQuery(value);
-
-  const handleCardClick = (id) => setCardId(id);
-
   useEffect(() => {
     (async () => {
-      const character = characters.find((item) => item.id === cardId);
+      if (!selectedCharacterId) return;
 
-      const getId = (item) => {
-        const a = item.split("/");
-        return a[a.length - 1];
-      };
+      const character = characters.find(
+        (item) => item.id === selectedCharacterId,
+      );
 
-      if (cardId !== null) {
-        const first = getId(character.episode[0]);
-        const last = getId(character.episode[character.episode.length - 1]);
+      if (selectedCharacterId !== null) {
+        const first = extractIdFromUrl(character.episode[0]);
+        const last = extractIdFromUrl(
+          character.episode[character.episode.length - 1],
+        );
         const ids = `${first},${last}`;
 
         const episodes = await fetchEpisodesById(ids);
@@ -54,41 +61,31 @@ export function Characters() {
         openModal();
       }
     })();
-  }, [cardId]);
-
-  // -----------------------------
-  // -----------------------------
-  // -----------------------------
-  // -----------------------------
-  // -----------------------------
-  const [visibilityModal, setVisibilityModal] = useState(false);
-
-  const openModal = () => setVisibilityModal(true);
-  const closeModal = () => setVisibilityModal(false);
-
-  // -----------------------------
+  }, [selectedCharacterId]);
 
   return (
     <div className="characters">
       <div className="characters__promo">
         <h1 className="characters__header">The Rick and Morty</h1>
-        <CharactersSearch getQuery={getQuery} />
+        <CharactersSearch handleSearch={handleSearch} />
       </div>
       {loading ? (
         <Spinner />
       ) : (
         <CharactersGrid
           characters={characters}
-          handleCardClick={handleCardClick}
+          handleCharacterCardClick={handleCharacterCardClick}
         />
       )}
-      {visibilityModal && (
-        <CharacterModal
-          characterWithEpisodes={characterWithEpisodes}
-          closeModal={closeModal}
-        />
+      {isModalOpen && (
+        <>
+          <CharacterModal
+            characterWithEpisodes={characterWithEpisodes}
+            closeModal={closeModal}
+          />
+          <Shadow closeModal={closeModal} />
+        </>
       )}
-      {visibilityModal && <Shadow closeModal={closeModal} />}
     </div>
   );
 }

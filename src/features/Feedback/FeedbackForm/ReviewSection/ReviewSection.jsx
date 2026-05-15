@@ -1,14 +1,17 @@
 import "./ReviewSection.scss";
 import { RatingRadioGroup } from "./RatingRadioGroup/RatingRadioGroup";
+import { FeedbackFormField } from "./../FeedbackFormField/FeedbackFormField";
 
 export function ReviewSection() {
   return (
     <div className="feedback-form__section">
-      <div className="feedback-form__line feedback-form__line--center feedback-form__line--radio">
-        <span className="feedback-form__label">Evaluate the project</span>
-        <RatingRadioGroup />
-      </div>
-      <div className="feedback-form__line">
+      <FeedbackFormField>
+        <label className="feedback-form__label">
+          Evaluate the project
+          <RatingRadioGroup />
+        </label>
+      </FeedbackFormField>
+      <FeedbackFormField>
         <label className="feedback-form__label">
           Describe your opinion
           <textarea
@@ -16,7 +19,7 @@ export function ReviewSection() {
             placeholder="What do you think about this animated series?"
           />
         </label>
-      </div>
+      </FeedbackFormField>
     </div>
   );
 }

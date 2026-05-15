@@ -1,9 +1,10 @@
 import "./PersonalInfoSection.scss";
+import { FeedbackFormField } from "../FeedbackFormField/FeedbackFormField";
 
 export function PersonalInfoSection() {
   return (
     <div className="feedback-form__section">
-      <div className="feedback-form__line">
+      <FeedbackFormField>
         <label className="feedback-form__label">
           Username
           <input
@@ -31,8 +32,8 @@ export function PersonalInfoSection() {
             <option value="australia">Australia</option>
           </select>
         </label>
-      </div>
-      <div className="feedback-form__line">
+      </FeedbackFormField>
+      <FeedbackFormField>
         <label className="feedback-form__label">
           Email
           <input
@@ -46,8 +47,8 @@ export function PersonalInfoSection() {
           Date of birth
           <input className="feedback-form__item" type="date" />
         </label>
-      </div>
-      <div className="feedback-form__line">
+      </FeedbackFormField>
+      <FeedbackFormField>
         <label className="feedback-form__label feedback-form__label--file">
           Profile picture
           <input
@@ -56,7 +57,7 @@ export function PersonalInfoSection() {
             accept="image/png, image/jpeg, image/jpg"
           />
         </label>
-      </div>
+      </FeedbackFormField>
     </div>
   );
 }

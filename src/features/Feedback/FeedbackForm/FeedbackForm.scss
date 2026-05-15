@@ -48,18 +48,6 @@
   }
 }
 
-.feedback-form__line {
-  width: 100%;
-  display: flex;
-  gap: 30px;
-
-  &--radio {
-    width: auto;
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
 // ===================== FORM ITEM ========================
 
 .feedback-form__label {
@@ -132,11 +120,6 @@
 
 .feedback-form__dropdown {
   padding: 8px;
-}
-
-.feedback-form__textarea {
-  height: 170px;
-  resize: none;
 }
 
 input[type="date"] {

@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "@/styles/constants" as const;
-@use "@/styles/mixins" as mixins;
 
 .feedback-form {
   font-size: map.get(const.$font-size, m);
@@ -61,11 +60,6 @@
   }
 }
 
-.feedback-form__radio-container {
-  display: flex;
-  gap: 30px;
-}
-
 // ===================== FORM ITEM ========================
 
 .feedback-form__label {
@@ -104,12 +98,6 @@
     border-color: const.$color-accent-2;
     cursor: pointer;
   }
-}
-
-.feedback-form__rating {
-  opacity: 0.5;
-  transition: const.$transition;
-  cursor: pointer;
 }
 
 .feedback-form__check {
@@ -178,17 +166,6 @@ input[type="file"] {
   }
 }
 
-input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-
-  &:checked + .feedback-form__rating {
-    opacity: 1;
-  }
-}
-
 input[type="checkbox"] {
   width: map.get(const.$font-size, s);
   height: map.get(const.$font-size, s);
@@ -198,22 +175,4 @@ input[type="checkbox"] {
 .empty {
   display: inline-block;
   height: 16px;
-}
-
-// ====================== SMILE =========================
-
-.icon--smile-good {
-  @include mixins.icon-background(40px, 40px, "@/assets/images/smile-good.svg");
-}
-
-.icon--smile-maybe {
-  @include mixins.icon-background(
-    40px,
-    40px,
-    "@/assets/images/smile-maybe.svg"
-  );
-}
-
-.icon--smile-bad {
-  @include mixins.icon-background(40px, 40px, "@/assets/images/smile-bad.svg");
 }

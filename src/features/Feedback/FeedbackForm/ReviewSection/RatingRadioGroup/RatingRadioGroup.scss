@@ -1,0 +1,50 @@
+@use "@/styles/constants.scss" as const;
+@use "@/styles/mixins.scss" as mixins;
+
+$size: 40px;
+
+.rating {
+  display: flex;
+  gap: 30px;
+}
+
+.rating__icon {
+  opacity: 0.5;
+  transition: const.$transition;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + .rating__icon {
+    opacity: 1;
+  }
+}
+
+.icon--smile-good {
+  @include mixins.icon-background(
+    $size,
+    $size,
+    "@/assets/images/smile-good.svg"
+  );
+}
+
+.icon--smile-maybe {
+  @include mixins.icon-background(
+    $size,
+    $size,
+    "@/assets/images/smile-maybe.svg"
+  );
+}
+
+.icon--smile-bad {
+  @include mixins.icon-background(
+    $size,
+    $size,
+    "@/assets/images/smile-bad.svg"
+  );
+}

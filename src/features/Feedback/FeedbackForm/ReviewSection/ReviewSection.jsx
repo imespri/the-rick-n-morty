@@ -2,13 +2,13 @@ import "./ReviewSection.scss";
 import { RatingRadioGroup } from "./RatingRadioGroup/RatingRadioGroup";
 import { FeedbackFormField } from "./../FeedbackFormField/FeedbackFormField";
 
-export function ReviewSection() {
+export function ReviewSection({ register }) {
   return (
     <div className="feedback-form__section">
       <FeedbackFormField>
         <label className="feedback-form__label">
           Evaluate the project
-          <RatingRadioGroup />
+          <RatingRadioGroup register={register} />
         </label>
       </FeedbackFormField>
       <FeedbackFormField>
@@ -17,6 +17,7 @@ export function ReviewSection() {
           <textarea
             className="feedback-form__textarea feedback-form__item"
             placeholder="What do you think about this animated series?"
+            {...register("opinionText")}
           />
         </label>
       </FeedbackFormField>

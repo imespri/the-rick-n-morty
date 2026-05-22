@@ -88,14 +88,6 @@
   }
 }
 
-.feedback-form__check {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
-
 .feedback-form__button {
   padding: 10px 40px;
   font-size: map.get(const.$font-size, m);
@@ -117,37 +109,6 @@
 }
 
 // ====================== SPECIAL =========================
-
-.feedback-form__dropdown {
-  padding: 8px;
-}
-
-input[type="date"] {
-  padding: 9px;
-  color-scheme: dark;
-}
-
-input[type="file"] {
-  width: 100%;
-  padding: 0;
-  background-color: transparent;
-  border: none;
-
-  &::-webkit-file-upload-button {
-    padding: 10px 20px;
-    background-color: const.$color-accent;
-    color: const.$color-font-light-regular;
-    border: 1px solid transparent;
-    border-radius: const.$border-radius-md;
-    cursor: pointer;
-    transition: const.$transition;
-    outline: none;
-
-    &:hover {
-      background-color: const.$color-accent-2;
-    }
-  }
-}
 
 input[type="checkbox"] {
   width: map.get(const.$font-size, s);

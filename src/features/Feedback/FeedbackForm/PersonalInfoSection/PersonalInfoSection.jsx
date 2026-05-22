@@ -1,17 +1,19 @@
 import "./PersonalInfoSection.scss";
 import { FeedbackFormField } from "../FeedbackFormField/FeedbackFormField";
 
-export function PersonalInfoSection() {
+export function PersonalInfoSection({ register }) {
   return (
     <div className="feedback-form__section">
       <FeedbackFormField>
-        <label className="feedback-form__label">
+        <label name="username" className="feedback-form__label">
           Username
           <input
+            name="username"
             className="feedback-form__input feedback-form__item"
             type="text"
             placeholder="Morty"
             autoComplete="off"
+            {...register("username")}
           />
         </label>
         <label className="feedback-form__label feedback-form__label--short">
@@ -19,6 +21,7 @@ export function PersonalInfoSection() {
           <select
             className="feedback-form__dropdown feedback-form__item feedback-form__item--short"
             defaultValue="default"
+            {...register("continent")}
           >
             <option value="default" disabled>
               Select
@@ -41,11 +44,16 @@ export function PersonalInfoSection() {
             type="text"
             placeholder="morty.smith@gmail.com"
             autoComplete="off"
+            {...register("email")}
           />
         </label>
         <label className="feedback-form__label feedback-form__label--short">
           Date of birth
-          <input className="feedback-form__item" type="date" />
+          <input
+            className="feedback-form__item"
+            type="date"
+            {...register("birthday")}
+          />
         </label>
       </FeedbackFormField>
       <FeedbackFormField>
@@ -55,6 +63,7 @@ export function PersonalInfoSection() {
             className="feedback-form__file feedback-form__item"
             type="file"
             accept="image/png, image/jpeg, image/jpg"
+            {...register("picture")}
           />
         </label>
       </FeedbackFormField>

@@ -1,6 +1,6 @@
 import "./RatingRadioGroup.scss";
 
-export function RatingRadioGroup() {
+export function RatingRadioGroup({ register }) {
   return (
     <div className="rating">
       <label htmlFor="ratingGood">
@@ -10,6 +10,7 @@ export function RatingRadioGroup() {
           name="rating"
           value="good"
           defaultChecked
+          {...register("rating")}
         />
         <span className="rating__icon icon--smile-good" />
       </label>

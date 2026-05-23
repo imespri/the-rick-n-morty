@@ -1,0 +1,10 @@
+@use "sass:map";
+@use "@/styles/constants" as const;
+
+.inline-error {
+  display: inline-block;
+  text-align: center;
+  font-size: map.get(const.$font-size, xs);
+  color: const.$color-font-error;
+  transition: const.$transition;
+}

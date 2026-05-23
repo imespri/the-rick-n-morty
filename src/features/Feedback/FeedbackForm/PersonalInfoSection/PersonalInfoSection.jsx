@@ -1,10 +1,11 @@
 import "./PersonalInfoSection.scss";
+import { validation } from "./../constants";
 import { FeedbackFormField } from "../FeedbackFormField/FeedbackFormField";
 
-export function PersonalInfoSection({ register }) {
+export function PersonalInfoSection({ register, errors }) {
   return (
     <div className="feedback-form__section">
-      <FeedbackFormField>
+      <FeedbackFormField error={errors.username}>
         <label name="username" className="feedback-form__label">
           Username
           <input
@@ -13,7 +14,7 @@ export function PersonalInfoSection({ register }) {
             type="text"
             placeholder="Morty"
             autoComplete="off"
-            {...register("username")}
+            {...register("username", { ...validation.username })}
           />
         </label>
         <label className="feedback-form__label feedback-form__label--short">
@@ -21,7 +22,7 @@ export function PersonalInfoSection({ register }) {
           <select
             className="feedback-form__dropdown feedback-form__item feedback-form__item--short"
             defaultValue="default"
-            {...register("continent")}
+            {...register("continent", { ...validation.continent })}
           >
             <option value="default" disabled>
               Select
@@ -44,7 +45,7 @@ export function PersonalInfoSection({ register }) {
             type="text"
             placeholder="morty.smith@gmail.com"
             autoComplete="off"
-            {...register("email")}
+            {...register("email", { ...validation.email })}
           />
         </label>
         <label className="feedback-form__label feedback-form__label--short">
@@ -52,7 +53,7 @@ export function PersonalInfoSection({ register }) {
           <input
             className="feedback-form__item"
             type="date"
-            {...register("birthday")}
+            {...register("birthday", { ...validation.birthday })}
           />
         </label>
       </FeedbackFormField>
@@ -63,7 +64,7 @@ export function PersonalInfoSection({ register }) {
             className="feedback-form__file feedback-form__item"
             type="file"
             accept="image/png, image/jpeg, image/jpg"
-            {...register("picture")}
+            {...register("picture", { ...validation.picture })}
           />
         </label>
       </FeedbackFormField>

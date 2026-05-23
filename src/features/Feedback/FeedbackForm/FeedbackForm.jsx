@@ -11,11 +11,7 @@ export function FeedbackForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  console.log(errors);
+  const onSubmit = (data) => {};
 
   return (
     <div className="feedback-form">

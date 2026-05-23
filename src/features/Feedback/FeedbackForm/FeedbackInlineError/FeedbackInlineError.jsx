@@ -16,5 +16,9 @@ export function FeedbackInlineError({ errorType }) {
     }
   };
 
-  return <span className="inline-error">{createErrorMessage(errorType)}</span>;
+  return (
+    <span className="inline-error">
+      {errorType && createErrorMessage(errorType)}
+    </span>
+  );
 }

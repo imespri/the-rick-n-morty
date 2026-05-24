@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "@/styles/constants" as const;
+@use "@/styles//mixins" as mixins;
+
+.notice {
+  width: 300px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  transition: const.$transition;
+  border-radius: const.$border-radius-md;
+  background-color: const.$color-notice-success;
+  color: const.$color-font-dark-regular;
+  z-index: 10;
+}
+
+.notice__wrapper {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.notice__column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notice__title {
+  margin: 0;
+  padding: 0;
+  font-size: map.get(const.$font-size, m);
+  font-weight: 500;
+  cursor: default;
+}
+
+.notice__description {
+  margin: 0;
+  padding: 0;
+  font-size: map.get(const.$font-size, s);
+  cursor: default;
+}
+
+.notice__icon {
+  @include mixins.icon-background(40px, 40px, "@/assets/images/notice.svg");
+}

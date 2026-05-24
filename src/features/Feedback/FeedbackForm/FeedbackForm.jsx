@@ -1,8 +1,10 @@
 import "./FeedbackForm.scss";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { PersonalInfoSection } from "./PersonalInfoSection/PersonalInfoSection";
 import { ReviewSection } from "./ReviewSection/ReviewSection";
 import { CreateFeedbackSection } from "./CreateFeedbackSection/CreateFeedbackSection";
+import { FeedbackNotice } from "./../FeedbackNotice/FeedbackNotice";
 
 export function FeedbackForm() {
   const {
@@ -11,7 +13,17 @@ export function FeedbackForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {};
+  const [feedback, setFeedback] = useState(null);
+  const [isNoticeShow, setIsNoticeShow] = useState(false);
+
+  const onSubmit = (data) => setFeedback(data);
+
+  useEffect(() => {
+    if (feedback) {
+      setIsNoticeShow(true);
+      setTimeout(() => setIsNoticeShow(false), 4000);
+    }
+  }, [feedback]);
 
   return (
     <div className="feedback-form">
@@ -23,6 +35,7 @@ export function FeedbackForm() {
           <CreateFeedbackSection register={register} errors={errors} />
         </form>
       </div>
+      {isNoticeShow && <FeedbackNotice />}
     </div>
   );
 }

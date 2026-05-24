@@ -4,6 +4,7 @@ import { FeedbackFormBlock } from "../FeedbackFormBlock/FeedbackFormBlock";
 
 export function CreateFeedbackSection({ register, errors, watch }) {
   const w = watch();
+
   return (
     <div className="feedback-form__section feedback-form__section--wide">
       <FeedbackFormBlock error={errors.isConfirm}>

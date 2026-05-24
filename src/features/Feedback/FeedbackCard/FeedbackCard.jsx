@@ -2,7 +2,6 @@ import "./FeedbackCard.scss";
 import classNames from "classnames";
 
 export function FeedbackCard({ feedback }) {
-  console.log(feedback);
   return (
     <li className="feedback-card">
       <div className="feedback-card__wrapper">

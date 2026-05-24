@@ -15,11 +15,23 @@ export function RatingRadioGroup({ register }) {
         <span className="rating__icon icon--smile-good" />
       </label>
       <label htmlFor="ratingMaybe">
-        <input id="ratingMaybe" type="radio" name="rating" value="maybe" />
+        <input
+          id="ratingMaybe"
+          type="radio"
+          name="rating"
+          value="maybe"
+          {...register("rating")}
+        />
         <span className="rating__icon icon--smile-maybe" />
       </label>
       <label htmlFor="ratingBad">
-        <input id="ratingBad" type="radio" name="rating" value="bad" />
+        <input
+          id="ratingBad"
+          type="radio"
+          name="rating"
+          value="bad"
+          {...register("rating")}
+        />
         <span className="rating__icon icon--smile-bad" />
       </label>
     </div>

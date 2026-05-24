@@ -2,7 +2,8 @@ import "./CreateFeedbackSection.scss";
 import { validation } from "./../constants";
 import { FeedbackFormBlock } from "../FeedbackFormBlock/FeedbackFormBlock";
 
-export function CreateFeedbackSection({ register, errors }) {
+export function CreateFeedbackSection({ register, errors, watch }) {
+  const w = watch();
   return (
     <div className="feedback-form__section feedback-form__section--wide">
       <FeedbackFormBlock error={errors.isConfirm}>
@@ -15,7 +16,11 @@ export function CreateFeedbackSection({ register, errors }) {
           agree to send my data
         </label>
       </FeedbackFormBlock>
-      <button className="button feedback-form__button" type="submit">
+      <button
+        className="button feedback-form__button"
+        type="submit"
+        disabled={!w.isConfirm}
+      >
         Create feedback
       </button>
     </div>

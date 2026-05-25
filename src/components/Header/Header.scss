@@ -2,7 +2,9 @@
 @use "@/styles/mixins" as mixins;
 
 .header {
+  position: relative;
   background: const.$background-image-accent;
+  z-index: 75;
 }
 
 .header__wrapper {

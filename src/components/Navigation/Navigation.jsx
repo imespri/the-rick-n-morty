@@ -1,17 +1,22 @@
 import "./Navigation.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useShadow } from "@/components/AppLayout/AppLayout";
 import { NavLink } from "react-router-dom";
 
 export function Navigation() {
-  const { toggleShadow } = useShadow();
-
+  const { isShadowActive, openShadow, hideShadow } = useShadow();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    toggleShadow();
+    isMenuOpen ? hideShadow() : openShadow();
   };
+
+  useEffect(() => {
+    if (isMenuOpen && !isShadowActive) {
+      setIsMenuOpen(!isMenuOpen);
+    }
+  }, [isShadowActive]);
 
   const createLinksUI = () => {
     const links = [

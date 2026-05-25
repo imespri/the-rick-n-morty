@@ -8,10 +8,11 @@ const ShadowContext = createContext();
 export function AppLayout() {
   const [isShadowActive, setIsShadowActive] = useState(false);
 
-  const toggleShadow = () => setIsShadowActive(!isShadowActive);
+  const openShadow = () => setIsShadowActive(true);
+  const hideShadow = () => setIsShadowActive(false);
 
   return (
-    <ShadowContext.Provider value={{ isShadowActive, toggleShadow }}>
+    <ShadowContext.Provider value={{ isShadowActive, openShadow, hideShadow }}>
       <Header />
       <main>
         <Outlet />

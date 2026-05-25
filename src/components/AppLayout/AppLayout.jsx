@@ -8,8 +8,14 @@ const ShadowContext = createContext();
 export function AppLayout() {
   const [isShadowActive, setIsShadowActive] = useState(false);
 
-  const openShadow = () => setIsShadowActive(true);
-  const hideShadow = () => setIsShadowActive(false);
+  const openShadow = () => {
+    setIsShadowActive(true);
+    document.body.style.overflow = "hidden";
+  };
+  const hideShadow = () => {
+    setIsShadowActive(false);
+    document.body.style.overflow = "";
+  };
 
   return (
     <ShadowContext.Provider value={{ isShadowActive, openShadow, hideShadow }}>

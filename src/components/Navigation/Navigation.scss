@@ -1,8 +1,32 @@
 @use "sass:map";
 @use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
 
 .navigation {
   font-size: map.get(const.$font-size, m);
+
+  @include mixins.media-md {
+    font-size: map.get(const.$font-size, l);
+  }
+}
+
+.navigation__icon {
+  @include mixins.icon-background(
+    35px,
+    35px,
+    "@/assets/images/burger-menu.svg"
+  );
+  display: none;
+  transition: const.$transition;
+  cursor: pointer;
+
+  @include mixins.media-md {
+    display: block;
+  }
+
+  &--open {
+    @include mixins.icon-background(30px, 30px, "@/assets/images/close.svg");
+  }
 }
 
 .navigation__list {
@@ -11,6 +35,24 @@
   padding: 0;
   gap: 30px;
   list-style: none;
+  transition: const.$transition;
+
+  @include mixins.media-md {
+    display: none;
+  }
+
+  &--open {
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    background: const.$background-image-accent;
+  }
 }
 
 .navigation__link {

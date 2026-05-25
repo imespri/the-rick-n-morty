@@ -1,7 +1,8 @@
 @use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
 
 .header {
-  background-color: const.$color-accent;
+  background: const.$background-image-accent;
 }
 
 .header__wrapper {
@@ -9,4 +10,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transform: const.$transition;
+
+  @include mixins.media-md {
+    padding: 10px 30px;
+  }
 }

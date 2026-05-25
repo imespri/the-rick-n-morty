@@ -44,6 +44,17 @@ $font-size: (
   2xs: 1.2rem,
 );
 
+// ==================== BREAKPOINTS =======================
+
+$media-breakpoints: (
+  2xl: 1400px,
+  xl: 1200px,
+  lg: 992px,
+  md: 768px,
+  sm: 576px,
+  2sm: 414px,
+);
+
 $background-image-accent: linear-gradient(
   90deg,
   $color-accent-2,

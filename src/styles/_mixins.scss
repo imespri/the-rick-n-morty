@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "./constants" as const;
+
 @mixin icon-background($height, $width, $url) {
   display: inline-block;
   height: $height;
@@ -6,4 +9,36 @@
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+// ========================= MEDIA ========================
+
+@mixin media-xl {
+  @media (max-width: map.get(const.$media-breakpoints, xl)) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media (max-width: map.get(const.$media-breakpoints, lg)) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (max-width: map.get(const.$media-breakpoints, md)) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media (max-width: map.get(const.$media-breakpoints, sm)) {
+    @content;
+  }
+}
+
+@mixin media-2sm {
+  @media (max-width: map.get(const.$media-breakpoints, 2sm)) {
+    @content;
+  }
 }

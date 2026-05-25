@@ -1,17 +1,27 @@
 import "./Navigation.scss";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-export function Navigation() {
+export function Navigation({ toggleShadow }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    // toggleShadow();
+  };
+
   const createLinksUI = () => {
     const links = [
       { to: "/", title: "Characters" },
+      { to: "/error-link", title: "Locations" },
+      { to: "/error-link", title: "Episodes" },
       { to: "/feedback", title: "Feedback" },
-      { to: "/error-link", title: "Error" },
+      { to: "/error-link", title: "Project Info" },
     ];
 
     return links.map((item, i) => (
       <li className="navigation__item" key={`navlink-${i}`}>
-        <NavLink className="navigation__link" to={item.to}>
+        <NavLink className="navigation__link" to={item.to} onClick={toggleMenu}>
           {item.title}
         </NavLink>
       </li>
@@ -20,7 +30,15 @@ export function Navigation() {
 
   return (
     <nav className="navigation">
-      <ul className="navigation__list">{createLinksUI()}</ul>
+      <span
+        className={`navigation__icon ${isMenuOpen && `navigation__icon--open`}`}
+        onClick={toggleMenu}
+      />
+      <ul
+        className={`navigation__list ${isMenuOpen && `navigation__list--open`}`}
+      >
+        {createLinksUI()}
+      </ul>
     </nav>
   );
 }

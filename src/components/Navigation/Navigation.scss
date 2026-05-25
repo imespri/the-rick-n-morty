@@ -17,8 +17,10 @@
     "@/assets/images/burger-menu.svg"
   );
   display: none;
+  position: relative;
   transition: const.$transition;
   cursor: pointer;
+  z-index: 30;
 
   @include mixins.media-md {
     display: block;
@@ -26,6 +28,11 @@
 
   &--open {
     @include mixins.icon-background(30px, 30px, "@/assets/images/close.svg");
+  }
+
+  &:hover {
+    filter: brightness(0) saturate(100%) invert(7%) sepia(4%) saturate(2789%)
+      hue-rotate(163deg) brightness(93%) contrast(86%);
   }
 }
 
@@ -35,23 +42,25 @@
   padding: 0;
   gap: 30px;
   list-style: none;
-  transition: const.$transition;
+  transition: const.$transition-l;
 
   @include mixins.media-md {
-    display: none;
-  }
-
-  &--open {
     padding: 15px;
     width: 100%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    position: absolute;
-    top: 60px;
+    position: fixed;
+    top: 30px;
     right: 0px;
     background: const.$background-image-accent;
+    transform: translateY(-150%);
+    z-index: 10;
+  }
+
+  &--open {
+    display: flex;
+    transform: translateY(0);
   }
 }
 

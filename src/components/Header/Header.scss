@@ -4,7 +4,7 @@
 .header {
   position: relative;
   background: const.$background-image-accent;
-  z-index: 75;
+  z-index: 20;
 }
 
 .header__wrapper {
@@ -12,7 +12,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transform: const.$transition;
 
   @include mixins.media-md {
     padding: 10px 30px;

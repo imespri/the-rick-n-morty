@@ -39,11 +39,11 @@ export function Navigation() {
   return (
     <nav className="navigation">
       <span
-        className={`navigation__icon ${isMenuOpen && `navigation__icon--open`}`}
+        className={`navigation__icon${isMenuOpen ? ` navigation__icon--open` : ``}`}
         onClick={toggleMenu}
       />
       <ul
-        className={`navigation__list ${isMenuOpen && `navigation__list--open`}`}
+        className={`navigation__list${isMenuOpen ? ` navigation__list--open` : ``}`}
       >
         {createLinksUI()}
       </ul>

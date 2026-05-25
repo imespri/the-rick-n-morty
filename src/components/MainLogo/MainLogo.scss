@@ -3,7 +3,9 @@
 
 .main-logo {
   @include mixins.icon-background(40px, 40px, "@/assets/images/logo.svg");
+  position: relative;
   transition: const.$transition;
+  z-index: 30;
 
   &:hover {
     filter: brightness(0) saturate(100%) invert(7%) sepia(4%) saturate(2789%)

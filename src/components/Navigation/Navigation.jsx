@@ -1,10 +1,14 @@
 import "./Navigation.scss";
-import { useState, useEffect } from "react";
+import classNames from "classnames";
+import { useState, useEffect, useRef } from "react";
 import { useShadow } from "@/components/AppLayout/AppLayout";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export function Navigation() {
   const { isShadowActive, openShadow, hideShadow } = useShadow();
+  const location = useLocation();
+  const prevLocationRef = useRef(location);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -18,6 +22,12 @@ export function Navigation() {
     }
   }, [isShadowActive]);
 
+  useEffect(() => {
+    if (location !== prevLocationRef && isMenuOpen) {
+      toggleMenu();
+    }
+  }, [location]);
+
   const createLinksUI = () => {
     const links = [
       { to: "/", title: "Characters" },
@@ -29,7 +39,14 @@ export function Navigation() {
 
     return links.map((item, i) => (
       <li className="navigation__item" key={`navlink-${i}`}>
-        <NavLink className="navigation__link" to={item.to} onClick={toggleMenu}>
+        <NavLink
+          className={({ isActive }) =>
+            classNames("navigation__link", {
+              "navigation__link--active": isActive,
+            })
+          }
+          to={item.to}
+        >
           {item.title}
         </NavLink>
       </li>

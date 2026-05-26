@@ -1,4 +1,5 @@
 import "./CharacterModal.scss";
+import classNames from "classnames";
 
 export function CharacterModal({ characterWithEpisodes, closeModal }) {
   const { character, episodes } = characterWithEpisodes;
@@ -44,8 +45,30 @@ export function CharacterModal({ characterWithEpisodes, closeModal }) {
         </div>
         <div className="character-modal__ceil">
           <div className="character-modal__tags">
-            <span className="character-card__tag">{character.gender}</span>
-            <span className="character-card__tag">{character.status}</span>
+            <span
+              className={classNames(
+                "character-card__tag",
+                {
+                  "character-card__tag--female": character.gender === "Female",
+                },
+                { "character-card__tag--male": character.gender === "Male" },
+                {
+                  "character-card__tag--genderless":
+                    character.gender === "Genderless",
+                },
+              )}
+            >
+              {character.gender}
+            </span>
+            <span
+              className={classNames(
+                "character-card__tag",
+                { "character-card__tag--alive": character.status === "Alive" },
+                { "character-card__tag--dead": character.status === "Dead" },
+              )}
+            >
+              {character.status}
+            </span>
           </div>
           <ul className="character-modal__list">
             <li className="character-modal__item">

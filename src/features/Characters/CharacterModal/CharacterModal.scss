@@ -1,9 +1,10 @@
 @use "sass:map";
 @use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
 
 .character-modal {
   width: 600px;
-  background: white;
+  background: const.$color-modal-background;
   border-radius: const.$border-radius-lg;
   position: fixed;
   left: 50%;
@@ -13,6 +14,11 @@
   transform: translate(-50%, -50%);
   transition: const.$transition;
   z-index: 20;
+
+  @include mixins.media-md {
+    width: calc(100% - 60px);
+    min-width: 360px;
+  }
 }
 
 .character-modal__header {
@@ -22,6 +28,11 @@
   background: const.$background-image-accent;
   font-size: map.get(const.$font-size, xl);
   border-radius: const.$border-radius-lg const.$border-radius-lg 0 0;
+  cursor: default;
+
+  @include mixins.media-md {
+    font-size: map.get(const.$font-size, l);
+  }
 }
 
 .character-modal__close {
@@ -43,6 +54,10 @@
     color: const.$color-accent-text;
     border-color: const.$color-accent-text;
   }
+
+  @include mixins.media-md {
+    margin: 5px auto;
+  }
 }
 
 .character-modal__content {
@@ -51,6 +66,15 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 30px;
+  transition: const.$transition;
+
+  @include mixins.media-sm {
+    gap: 15px;
+  }
+
+  @include mixins.media-2sm {
+    padding: 20px 10px;
+  }
 }
 
 .character-modal__ceil {
@@ -62,6 +86,16 @@
   margin-top: 15px;
   display: flex;
   gap: 7.5px;
+  transition: const.$transition;
+
+  @include mixins.media-sm {
+    margin-top: 5px;
+    font-size: map.get(const.$font-size, s);
+  }
+
+  @include mixins.media-2sm {
+    font-size: map.get(const.$font-size, xs);
+  }
 }
 
 .character-modal__img {
@@ -69,6 +103,7 @@
   width: 100%;
   border-radius: const.$border-radius-md;
   object-fit: contain;
+  transition: const.$transition;
 }
 
 .character-modal__list {
@@ -77,10 +112,24 @@
   flex-direction: column;
   gap: 10px;
   list-style: none;
+  transition: const.$transition;
+
+  @include mixins.media-sm {
+    margin-top: 15px;
+  }
 }
 
 .character-modal__item {
-  font-size: 2rem;
+  font-size: map.get(const.$font-size, m);
+  transition: const.$transition;
+
+  @include mixins.media-sm {
+    font-size: map.get(const.$font-size, s);
+  }
+
+  @include mixins.media-2sm {
+    font-size: map.get(const.$font-size, xs);
+  }
 }
 
 .character-modal__title {
@@ -93,4 +142,12 @@
 .character-modal__subheader {
   font-size: map.get(const.$font-size, l);
   font-weight: 500;
+
+  @include mixins.media-sm {
+    font-size: map.get(const.$font-size, m);
+  }
+
+  @include mixins.media-2sm {
+    font-size: map.get(const.$font-size, s);
+  }
 }

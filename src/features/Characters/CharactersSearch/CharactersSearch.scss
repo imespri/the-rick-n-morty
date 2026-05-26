@@ -5,6 +5,14 @@
 .characters-search {
   width: 500px;
   position: relative;
+
+  @include mixins.media-md {
+    width: 350px;
+  }
+
+  @include mixins.media-sm {
+    width: 300px;
+  }
 }
 
 .characters-search__input {
@@ -13,10 +21,22 @@
   font-size: map.get(const.$font-size, l);
   font-weight: const.$font-weight-regular;
   color: const.$color-font-dark-regular;
+  border: 2px solid const.$color-font-dark-regular;
+  border-radius: const.$border-radius-md;
   box-sizing: border-box;
   transition: const.$transition;
   outline: none;
   cursor: pointer;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-color: const.$color-accent;
+  }
+
+  @include mixins.media-md {
+    font-size: map.get(const.$font-size, m);
+  }
 }
 
 .characters-search__icon--search {

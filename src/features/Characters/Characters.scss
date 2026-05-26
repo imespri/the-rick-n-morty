@@ -15,7 +15,20 @@
 
 .characters__header {
   margin-top: 100px;
+  text-align: center;
   font-size: map.get(const.$font-size, 4xl);
   font-weight: const.$font-weight-bold;
   cursor: default;
+
+  @include mixins.media-md {
+    margin-top: 75px;
+    font-size: map.get(const.$font-size, 3xl);
+    line-height: 55px;
+  }
+
+  @include mixins.media-sm {
+    margin-top: 50px;
+    font-size: map.get(const.$font-size, 2xl);
+    line-height: 55px;
+  }
 }

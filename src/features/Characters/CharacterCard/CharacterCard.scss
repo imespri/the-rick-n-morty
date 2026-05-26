@@ -1,5 +1,7 @@
 @use "sass:map";
+@use "sass:color";
 @use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
 
 .character-card {
   width: calc(50% - 15px);
@@ -10,17 +12,68 @@
   color: const.$color-font-light-regular;
   background-color: const.$color-card-background;
   border-radius: const.$border-radius-lg;
+  transition: const.$transition;
+
+  &:hover {
+    background-color: color.scale(const.$color-card-background, $lightness: 5%);
+  }
+
+  @include mixins.media-lg {
+    font-size: map.get(const.$font-size, xs);
+  }
+
+  @include mixins.media-md {
+    width: 100%;
+    font-size: map.get(const.$font-size, m);
+  }
+
+  @include mixins.media-sm {
+    font-size: map.get(const.$font-size, xs);
+  }
+
+  @include mixins.media-2sm {
+    width: 95%;
+    flex-direction: column;
+    align-items: center;
+    font-size: map.get(const.$font-size, s);
+  }
+}
+
+.character-card:has(.character-card__image:hover) .character-card__header {
+  color: const.$color-accent-text;
 }
 
 .character-card__image {
   height: 200px;
   border-radius: const.$border-radius-md;
+  transition: const.$transition;
+  cursor: pointer;
+
+  @include mixins.media-lg {
+    height: 125px;
+  }
+
+  @include mixins.media-md {
+    height: 200px;
+  }
+
+  @include mixins.media-sm {
+    height: 125px;
+  }
+
+  @include mixins.media-2sm {
+    height: 275px;
+  }
 }
 
 .character-card__column {
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  @include mixins.media-2sm {
+    align-items: center;
+  }
 }
 
 .character-card__header {
@@ -28,6 +81,28 @@
   padding: 0;
   font-size: map.get(const.$font-size, l);
   font-weight: const.$font-weight-bold;
+  transition: const.$transition;
+  cursor: pointer;
+
+  &:hover {
+    color: const.$color-accent-text;
+  }
+
+  @include mixins.media-lg {
+    font-size: map.get(const.$font-size, m);
+  }
+
+  @include mixins.media-md {
+    font-size: map.get(const.$font-size, xl);
+  }
+
+  @include mixins.media-sm {
+    font-size: map.get(const.$font-size, l);
+  }
+
+  @include mixins.media-2sm {
+    font-size: map.get(const.$font-size, xl);
+  }
 }
 
 .character-card__tag-list {
@@ -36,6 +111,10 @@
   display: flex;
   gap: 10px;
   list-style: none;
+
+  @include mixins.media-2sm {
+    align-items: center;
+  }
 }
 
 .character-card__tag {
@@ -44,12 +123,38 @@
   color: const.$color-font-light-regular;
   border: 1px solid const.$color-tag-default;
   border-radius: const.$border-radius-md;
+  transition: const.$transition;
+  cursor: not-allowed;
+
+  &--male {
+    @include mixins.tag-color(const.$color-tag-male);
+  }
+
+  &--female {
+    @include mixins.tag-color(const.$color-tag-female);
+  }
+
+  &--genderless {
+    @include mixins.tag-color(const.$color-tag-genderless);
+  }
+
+  &--alive {
+    @include mixins.tag-color(const.$color-tag-alive);
+  }
+
+  &--dead {
+    @include mixins.tag-color(const.$color-tag-dead);
+  }
 }
 
 .character-card__description {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @include mixins.media-2sm {
+    align-items: center;
+  }
 }
 
 .character-card__property {

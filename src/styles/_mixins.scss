@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:color";
 @use "./constants" as const;
 
 @mixin icon-background($height, $width, $url) {
@@ -9,6 +10,16 @@
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+@mixin tag-color($color) {
+  background-color: $color;
+  border-color: $color;
+  cursor: pointer;
+
+  &:hover {
+    background-color: color.scale($color, $lightness: 25%);
+  }
 }
 
 // ========================= MEDIA ========================

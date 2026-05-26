@@ -5,6 +5,7 @@
 .characters-search {
   width: 500px;
   position: relative;
+  transition: const.$transition;
 
   @include mixins.media-md {
     width: 350px;

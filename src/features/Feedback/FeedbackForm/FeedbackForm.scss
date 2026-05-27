@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
 
 .feedback-form {
   font-size: map.get(const.$font-size, m);
@@ -7,6 +8,10 @@
   background-color: const.$color-card-background;
   border-radius: const.$border-radius-lg;
   transition: const.$transition;
+
+  @include mixins.media-sm {
+    font-size: map.get(const.$font-size, s);
+  }
 }
 
 .feedback-form__header {
@@ -20,6 +25,11 @@
 
 .feedback-form__container {
   padding: 30px;
+  transition: const.$transition;
+
+  @include mixins.media-sm {
+    padding: 30px 15px;
+  }
 }
 
 .feedback-form__form {
@@ -29,6 +39,10 @@
   flex-wrap: wrap;
   gap: 30px;
   transition: const.$transition;
+
+  @include mixins.media-md {
+    flex-direction: column;
+  }
 }
 
 .feedback-form__section {
@@ -44,6 +58,18 @@
     margin-top: 30px;
     width: 100%;
     flex-direction: column;
+    gap: 30px;
+
+    @include mixins.media-md {
+      margin-top: 0;
+    }
+  }
+
+  @include mixins.media-md {
+    width: 100%;
+  }
+
+  @include mixins.media-md {
     gap: 30px;
   }
 }

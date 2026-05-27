@@ -10,6 +10,11 @@
 
 .feedback__wrapper {
   padding: 0 30px;
+  transition: const.$transition;
+
+  @include mixins.media-sm {
+    padding: 0 15px;
+  }
 }
 
 .feedback__img {

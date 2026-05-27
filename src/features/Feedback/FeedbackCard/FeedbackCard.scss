@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
 
 .feedback-card {
   width: calc(50% - 15px);
@@ -8,6 +9,10 @@
   background-color: const.$color-card-background;
   border-radius: const.$border-radius-lg;
   transition: const.$transition;
+
+  @include mixins.media-md {
+    width: 100%;
+  }
 }
 
 .feedback-card__wrapper {
@@ -16,6 +21,15 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 15px;
+  transition: const.$transition;
+
+  @include mixins.media-lg {
+    padding: 15px;
+  }
+
+  @include mixins.media-sm {
+    gap: 5px 10px;
+  }
 }
 
 .feedback-card__picture {
@@ -26,6 +40,10 @@
   object-fit: cover;
   background-color: #cf112b;
   transition: const.$transition;
+
+  @include mixins.media-2sm {
+    display: none;
+  }
 }
 
 .feedback-card__column {
@@ -37,6 +55,11 @@
 
 .feedback-card__header {
   font-size: map.get(const.$font-size, xl);
+  transition: const.$transition;
+
+  @include mixins.media-2sm {
+    font-size: map.get(const.$font-size, l);
+  }
 }
 
 .feedback-card__subheader {

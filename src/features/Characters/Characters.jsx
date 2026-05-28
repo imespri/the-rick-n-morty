@@ -1,15 +1,17 @@
 import "./Characters.scss";
 import { useState, useEffect } from "react";
+import { useShadow } from "@/components/AppLayout/AppLayout";
 import { CharactersSearch } from "./CharactersSearch/CharactersSearch";
 import { CharactersGrid } from "./CharactersGrid/CharactersGrid";
 import { CharacterModal } from "./CharacterModal/CharacterModal";
 import { Spinner } from "@/components/Spinner/Spinner";
-import { Shadow } from "@/components/Shadow/Shadow";
 import { fetchCharactersByQuery, fetchEpisodesById } from "@/services";
 
 const extractIdFromUrl = (item) => item.split("/").pop();
 
 export function Characters() {
+  const { isShadowActive, openShadow, hideShadow } = useShadow();
+
   const [characters, setCharacters] = useState([]);
   const [query, setQuery] = useState("");
   const [selectedCharacterId, setSelectedCharacterId] = useState(null);
@@ -21,9 +23,23 @@ export function Characters() {
 
   const handleCharacterCardClick = (id) => setSelectedCharacterId(id);
 
-  const openModal = () => setIsModalOpen(true);
+  const openModal = () => {
+    setIsModalOpen(true);
+    openShadow();
+    handleCharacterCardClick(null);
+  };
 
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    handleCharacterCardClick(null);
+    hideShadow();
+  };
+
+  useEffect(() => {
+    if (!isShadowActive) {
+      setIsModalOpen(false);
+    }
+  }, [isShadowActive]);
 
   useEffect(() => {
     const loadCharacters = async () => {
@@ -41,28 +57,6 @@ export function Characters() {
 
     loadCharacters();
   }, [query]);
-  //   (async () => {
-  //     if (!selectedCharacterId) return;
-
-  //     const character = characters.find(
-  //       (item) => item.id === selectedCharacterId,
-  //     );
-
-  //     if (selectedCharacterId !== null) {
-  //       const first = extractIdFromUrl(character.episode[0]);
-  //       const last = extractIdFromUrl(
-  //         character.episode[character.episode.length - 1],
-  //       );
-  //       const ids = `${first},${last}`;
-
-  //       const episodes = await fetchEpisodesById(ids);
-
-  //       setCharacterWithEpisodes({ character, episodes });
-
-  //       openModal();
-  //     }
-  //   })();
-  // }, [selectedCharacterId]);
 
   useEffect(() => {
     if (!selectedCharacterId) return;
@@ -104,13 +98,10 @@ export function Characters() {
         />
       )}
       {isModalOpen && (
-        <>
-          <CharacterModal
-            characterWithEpisodes={characterWithEpisodes}
-            closeModal={closeModal}
-          />
-          <Shadow closeModal={closeModal} />
-        </>
+        <CharacterModal
+          characterWithEpisodes={characterWithEpisodes}
+          closeModal={closeModal}
+        />
       )}
     </div>
   );

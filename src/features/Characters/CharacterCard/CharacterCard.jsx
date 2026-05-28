@@ -3,11 +3,8 @@ import classNames from "classnames";
 
 export function CharacterCard({ character, handleCharacterCardClick }) {
   return (
-    <article
-      className="character-card"
-      onClick={() => handleCharacterCardClick(character.id)}
-    >
-      <div>
+    <article className="character-card">
+      <div onClick={() => handleCharacterCardClick(character.id)}>
         <img
           className="character-card__image"
           src={character.image}
@@ -15,7 +12,12 @@ export function CharacterCard({ character, handleCharacterCardClick }) {
         />
       </div>
       <div className="character-card__column">
-        <h2 className="character-card__header">{character.name}</h2>
+        <h2
+          className="character-card__header"
+          onClick={() => handleCharacterCardClick(character.id)}
+        >
+          {character.name}
+        </h2>
         <ul className="character-card__tag-list">
           <li
             className={classNames(

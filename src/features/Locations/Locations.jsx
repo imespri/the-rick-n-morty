@@ -1,38 +1,7 @@
 import "./Locations.scss";
 import { useState, useEffect } from "react";
-import { fetchLocations, fetchCharactersByIds } from "@/services";
-
-const F = (characters) => {
-  let result = null;
-
-  const charactersIds = characters.map((item) => {
-    const parts = item.split("/");
-    return Number(parts[parts.length - 1]);
-  });
-
-  const getCharacters = async () => {
-    const count = 5;
-
-    switch (true) {
-      case charactersIds.length === 0: {
-        result = [];
-      }
-      case charactersIds.length <= count: {
-        result = await fetchCharactersByIds(charactersIds);
-      }
-      case charactersIds.length >= count: {
-        const charactersIdsPart = charactersIds.slice(0, count);
-        const l = charactersIds.length - count;
-
-        const data = await fetchCharactersByIds(charactersIdsPart);
-        result = data;
-      }
-      default: {
-        result = [];
-      }
-    }
-  };
-};
+import { fetchLocations } from "@/services";
+import { CharactersList } from "./CharactersList/CharactersList";
 
 export function Locations() {
   const [locations, setLocations] = useState([]);
@@ -62,7 +31,9 @@ export function Locations() {
         <td>{item.name}</td>
         <td>{item.type}</td>
         <td>{item.dimension}</td>
-        <td>{F(item.residents)}</td>
+        <td>
+          <CharactersList charactersUrl={item.residents} />
+        </td>
       </tr>
     ));
   };

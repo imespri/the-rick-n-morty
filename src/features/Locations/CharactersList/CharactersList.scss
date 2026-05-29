@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "@/styles/constants" as const;
+
+.characters-list__list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.characters-list__item {
+  position: relative;
+
+  &:not(:first-child) {
+    margin-left: -25px;
+  }
+}
+
+.characters-list__image {
+  width: const.$size-character-list-img;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.characters-list__count {
+  display: inline-flex;
+  width: const.$size-character-list-img;
+  height: const.$size-character-list-img;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: map.get(const.$font-size, s);
+  font-weight: const.$font-weight-regular;
+  background-color: const.$color-accent-2;
+  border-radius: 50%;
+  cursor: default;
+}

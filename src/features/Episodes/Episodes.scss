@@ -1,0 +1,54 @@
+@use "sass:map";
+@use "@/styles/constants" as const;
+@use "@/styles//mixins" as mixins;
+
+.episodes {
+  padding-bottom: 100px;
+  color: const.$color-font-light-regular;
+  font-size: map.get(const.$font-size, m);
+}
+
+.episodes__wrapper {
+  padding: 0 30px;
+  transition: const.$transition;
+}
+
+.episodes__header {
+  margin: 60px 0 40px 0;
+  font-size: map.get(const.$font-size, xl);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.episodes__container {
+  width: 100%;
+  padding: 30px 30px 60px 30px;
+  border-radius: const.$border-radius-lg;
+  background-color: const.$color-table-background;
+}
+
+.episodes__table {
+  width: 100%;
+  background-color: const.$color-table-background;
+  text-align: center;
+  border-collapse: collapse;
+  border: none;
+}
+
+.episodes__table thead {
+  color: const.$color-accent-2;
+}
+
+.episodes__table tr:nth-child(2n) {
+  background-color: const.$color-table-background-line;
+}
+
+.episodes__table th {
+  padding: 15px 0;
+  border: none;
+}
+
+.episodes__table td {
+  padding: 15px 0;
+  border: none;
+}

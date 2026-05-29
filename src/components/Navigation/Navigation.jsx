@@ -32,7 +32,7 @@ export function Navigation() {
     const links = [
       { to: "/", title: "Characters" },
       { to: "/locations", title: "Locations" },
-      { to: "/error-link", title: "Episodes" },
+      { to: "/episodes", title: "Episodes" },
       { to: "/feedback", title: "Feedback" },
       { to: "/error-link", title: "Project Info" },
     ];

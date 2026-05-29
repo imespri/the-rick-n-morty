@@ -19,6 +19,15 @@ export const fetchCharactersByIds = async (ids) => {
   }
 };
 
+export const fetchEpisodes = async () => {
+  try {
+    const response = await fetch(`${API}/episode`);
+    return response.json();
+  } catch ({ message }) {
+    throw message;
+  }
+};
+
 export const fetchEpisodesById = async (id) => {
   try {
     const response = await fetch(`${API}/episode/${id}`);

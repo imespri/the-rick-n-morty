@@ -48,8 +48,8 @@ export function CharactersList({ charactersUrl }) {
       return <span>-</span>;
     }
 
-    const elemUI = characters.map((item) => (
-      <li className="characters-list__item" key={item.name}>
+    const elemUI = characters.map((item, i) => (
+      <li className="characters-list__item" key={`${item.name}-${i}`}>
         <img
           className="characters-list__image"
           src={item.image}

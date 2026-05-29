@@ -31,7 +31,7 @@ export function Navigation() {
   const createLinksUI = () => {
     const links = [
       { to: "/", title: "Characters" },
-      { to: "/error-link", title: "Locations" },
+      { to: "/locations", title: "Locations" },
       { to: "/error-link", title: "Episodes" },
       { to: "/feedback", title: "Feedback" },
       { to: "/error-link", title: "Project Info" },

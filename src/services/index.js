@@ -10,9 +10,27 @@ export const fetchCharactersByQuery = async (query) => {
   }
 };
 
+export const fetchCharactersByIds = async (ids) => {
+  try {
+    const response = await fetch(`${API}/character/${ids}`);
+    return await response.json();
+  } catch ({ message }) {
+    throw message;
+  }
+};
+
 export const fetchEpisodesById = async (id) => {
   try {
     const response = await fetch(`${API}/episode/${id}`);
+    return await response.json();
+  } catch ({ message }) {
+    throw message;
+  }
+};
+
+export const fetchLocations = async () => {
+  try {
+    const response = await fetch(`${API}/location`);
     return await response.json();
   } catch ({ message }) {
     throw message;

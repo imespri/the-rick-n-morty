@@ -2,29 +2,7 @@ import "./Episodes.scss";
 import { useState, useEffect } from "react";
 import { DataTable } from "@/components/DataTable/DataTable";
 import { fetchEpisodes, fetchCharactersByIds } from "@/services";
-
-const F = (data) => {
-  // получение массива ID
-  const arr = data.map((item) => {
-    const ids = item.characters.map((a) => {
-      const result = a.split("/");
-      return Number(result[result.length - 1]);
-    });
-
-    return ids;
-  });
-
-  // удаление повторяющихся значений
-  const arrUniqueIds = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    if (!arrUniqueIds.includes(arr[i]) && arr[i].length !== 0) {
-      arrUniqueIds.push(arr[i]);
-    }
-  }
-
-  return arrUniqueIds;
-};
+import { getCharacterIds } from "@/utils/getCharacterIds";
 
 export function Episodes() {
   const [episodes, setEpisodes] = useState([]);
@@ -39,7 +17,7 @@ export function Episodes() {
         const data = await fetchEpisodes();
         setEpisodes(Array.isArray(data.results) ? data.results : []);
 
-        const charactersIds = F(data.results);
+        const charactersIds = getCharacterIds(data.results, "characters");
         const charactersData = await fetchCharactersByIds(charactersIds);
         setCharacters(charactersData);
       } catch (error) {

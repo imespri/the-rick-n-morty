@@ -1,0 +1,28 @@
+@use "@/styles/constants" as const;
+
+.table-data {
+  width: 100%;
+  min-width: 500px;
+  background-color: const.$color-table-background;
+  text-align: center;
+  border-collapse: collapse;
+  border: none;
+}
+
+.table-data thead {
+  color: const.$color-accent-2;
+}
+
+.table-data tr:nth-child(2n) {
+  background-color: const.$color-table-background-line;
+}
+
+.table-data th {
+  padding: 15px 0;
+  border: none;
+}
+
+.table-data td {
+  padding: 15px 0;
+  border: none;
+}

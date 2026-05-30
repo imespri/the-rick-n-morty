@@ -1,6 +1,6 @@
 import "./Episodes.scss";
 import { useState, useEffect } from "react";
-import { CharactersList } from "../Locations/CharactersList/CharactersList";
+import { DataTable } from "@/components/DataTable/DataTable";
 import { fetchEpisodes } from "@/services";
 
 export function Episodes() {
@@ -24,20 +24,6 @@ export function Episodes() {
     loadEpisodes();
   }, []);
 
-  const createTableBodyUI = () => {
-    return episodes.map((item) => (
-      <tr key={`episodes-${item.name}`}>
-        <td>{item.id}</td>
-        <td>{item.name}</td>
-        <td>{item.air_date}</td>
-        <td>{item.episode}</td>
-        <td>
-          <CharactersList charactersUrl={item.characters} />
-        </td>
-      </tr>
-    ));
-  };
-
   return (
     <div className="episodes">
       <div className="episodes__wrapper wrapper">
@@ -46,18 +32,7 @@ export function Episodes() {
           <p>loading....</p>
         ) : (
           <div className="episodes__container">
-            <table className="episodes__table">
-              <thead>
-                <tr>
-                  <th>Num</th>
-                  <th>Name</th>
-                  <th>Air Date</th>
-                  <th>Episode</th>
-                  <th>Characters</th>
-                </tr>
-              </thead>
-              <tbody>{createTableBodyUI()}</tbody>
-            </table>
+            <DataTable page="episodes" data={episodes} />
           </div>
         )}
       </div>

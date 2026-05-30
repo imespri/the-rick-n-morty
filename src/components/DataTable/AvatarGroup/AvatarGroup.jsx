@@ -1,8 +1,8 @@
-import "./CharactersList.scss";
+import "./AvatarGroup.scss";
 import { useState, useEffect } from "react";
 import { fetchCharactersByIds } from "@/services";
 
-export function CharactersList({ charactersUrl }) {
+export function AvatarGroup({ charactersUrl }) {
   const count = 6;
 
   const [characters, setCharacters] = useState([]);
@@ -49,9 +49,9 @@ export function CharactersList({ charactersUrl }) {
     }
 
     const elemUI = characters.map((item, i) => (
-      <li className="characters-list__item" key={`${item.name}-${i}`}>
+      <li className="avatar-group__item" key={`${item.name}-${i}`}>
         <img
-          className="characters-list__image"
+          className="avatar-group__image"
           src={item.image}
           alt={item.name}
           title={item.name}
@@ -63,9 +63,9 @@ export function CharactersList({ charactersUrl }) {
       const lastElemUI = (
         <li
           key={`item-${charactersUrl.length - count}`}
-          className="characters-list__item characters-list__item--count"
+          className="avatar-group__item"
         >
-          <span className="characters-list__count">
+          <span className="avatar-group__count">
             {`${charactersUrl.length - count}+`}
           </span>
         </li>
@@ -82,7 +82,7 @@ export function CharactersList({ charactersUrl }) {
       {loading ? (
         <span>loading...</span>
       ) : (
-        <ul className="characters-list__list">{renderCharacters()}</ul>
+        <ul className="avatar-group__list">{renderCharacters()}</ul>
       )}
     </div>
   );

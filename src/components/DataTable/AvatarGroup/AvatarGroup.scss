@@ -1,30 +1,39 @@
 @use "sass:map";
 @use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
 
-.characters-list__list {
+.avatar-group__list {
   display: flex;
   justify-content: center;
   list-style: none;
 }
 
-.characters-list__item {
+.avatar-group__item {
   position: relative;
 
   &:not(:first-child) {
     margin-left: -25px;
+
+    @include mixins.media-md {
+      margin-left: -20px;
+    }
   }
 }
 
-.characters-list__image {
-  width: const.$size-character-list-img;
+.avatar-group__image {
+  width: 60px;
   display: inline-block;
   border-radius: 50%;
+
+  @include mixins.media-md {
+    width: 40px;
+  }
 }
 
-.characters-list__count {
+.avatar-group__count {
   display: inline-flex;
-  width: const.$size-character-list-img;
-  height: const.$size-character-list-img;
+  width: 60px;
+  height: 60px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -33,4 +42,9 @@
   background-color: const.$color-accent-2;
   border-radius: 50%;
   cursor: default;
+
+  @include mixins.media-md {
+    width: 40px;
+    height: 40px;
+  }
 }

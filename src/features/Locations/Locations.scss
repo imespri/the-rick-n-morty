@@ -6,10 +6,14 @@
   padding-bottom: 100px;
   color: const.$color-font-light-regular;
   font-size: map.get(const.$font-size, m);
+
+  @include mixins.media-md {
+    font-size: map.get(const.$font-size, s);
+  }
 }
 
 .locations__wrapper {
-  padding: 0 30px;
+  padding: 0 10px;
   transition: const.$transition;
 }
 
@@ -21,34 +25,8 @@
 }
 
 .locations__container {
-  width: 100%;
+  min-width: 550px;
   padding: 30px 30px 60px 30px;
   border-radius: const.$border-radius-lg;
   background-color: const.$color-table-background;
-}
-
-.locations__table {
-  width: 100%;
-  background-color: const.$color-table-background;
-  text-align: center;
-  border-collapse: collapse;
-  border: none;
-}
-
-.locations__table thead {
-  color: const.$color-accent-2;
-}
-
-.locations__table tr:nth-child(2n) {
-  background-color: const.$color-table-background-line;
-}
-
-.locations__table th {
-  padding: 15px 0;
-  border: none;
-}
-
-.locations__table td {
-  padding: 15px 0;
-  border: none;
 }

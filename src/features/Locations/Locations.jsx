@@ -31,9 +31,7 @@ export function Locations() {
         {loading ? (
           <p>loading....</p>
         ) : (
-          <div className="locations__container">
-            <DataTable page={"locations"} data={locations} />
-          </div>
+          <DataTable page={"locations"} data={locations} />
         )}
       </div>
     </div>

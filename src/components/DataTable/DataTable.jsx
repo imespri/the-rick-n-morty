@@ -23,17 +23,19 @@ export function DataTable({ page, data }) {
   };
 
   return (
-    <table className="table-data">
-      <thead>
-        <tr>
-          <th>Num</th>
-          <th>Name</th>
-          <th>{page === "locations" ? "Type" : "Air Date"}</th>
-          <th>{page === "locations" ? "Dimension" : "Episode"}</th>
-          <th>{page === "locations" ? "Residents" : "Characters"}</th>
-        </tr>
-      </thead>
-      <tbody>{createBodyUI()}</tbody>
-    </table>
+    <div className="table-data">
+      <table className="table-data__table">
+        <thead>
+          <tr>
+            <th>Num</th>
+            <th>Name</th>
+            <th>{page === "locations" ? "Type" : "Air Date"}</th>
+            <th>{page === "locations" ? "Dimension" : "Episode"}</th>
+            <th>{page === "locations" ? "Residents" : "Characters"}</th>
+          </tr>
+        </thead>
+        <tbody>{createBodyUI()}</tbody>
+      </table>
+    </div>
   );
 }

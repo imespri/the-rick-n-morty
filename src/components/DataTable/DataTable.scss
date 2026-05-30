@@ -1,28 +1,40 @@
 @use "@/styles/constants" as const;
+@use "@/styles//mixins" as mixins;
 
 .table-data {
+  padding: 30px 30px 60px 30px;
+  overflow-x: auto;
+  border-radius: const.$border-radius-lg;
+  background-color: const.$color-table-background;
+
+  @include mixins.media-md {
+    padding: 20px 20px 40px 20px;
+  }
+}
+
+.table-data__table {
   width: 100%;
-  min-width: 500px;
+  min-width: 550px;
   background-color: const.$color-table-background;
   text-align: center;
   border-collapse: collapse;
   border: none;
 }
 
-.table-data thead {
+.table-data__table thead {
   color: const.$color-accent-2;
 }
 
-.table-data tr:nth-child(2n) {
+.table-data__table tr:nth-child(2n) {
   background-color: const.$color-table-background-line;
 }
 
-.table-data th {
+.table-data__table th {
   padding: 15px 0;
   border: none;
 }
 
-.table-data td {
+.table-data__table td {
   padding: 15px 0;
   border: none;
 }

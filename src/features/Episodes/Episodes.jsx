@@ -31,9 +31,7 @@ export function Episodes() {
         {loading ? (
           <p>loading....</p>
         ) : (
-          <div className="episodes__container">
-            <DataTable page="episodes" data={episodes} />
-          </div>
+          <DataTable page="episodes" data={episodes} />
         )}
       </div>
     </div>

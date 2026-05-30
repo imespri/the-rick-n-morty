@@ -1,8 +1,27 @@
 import "./DataTable.scss";
 import { AvatarGroup } from "./AvatarGroup/AvatarGroup";
 
-export function DataTable({ page, data }) {
+export function DataTable({ page, data, allCharacters }) {
   // page === locations || episodes
+
+  const getCharacters = (residents) => {
+    const ids = residents.map((a) => {
+      const r = a.split("/");
+      return Number(r[r.length - 1]);
+    });
+
+    const result = [];
+
+    for (let i = 0; i < ids.length; i++) {
+      for (let j = 0; j < allCharacters.length; j++) {
+        if (ids[i] === allCharacters[j].id) {
+          result.push(allCharacters[j]);
+        }
+      }
+    }
+
+    return result.slice(0, 6);
+  };
 
   const createBodyUI = () => {
     return data.map((item) => (
@@ -11,13 +30,21 @@ export function DataTable({ page, data }) {
         <td>{item.name}</td>
         <td>{page === "locations" ? item.type : item.air_date}</td>
         <td>{page === "locations" ? item.dimension : item.episode}</td>
-        <td>
-          <AvatarGroup
-            charactersUrl={
-              page === "locations" ? item.residents : item.characters
-            }
-          />
-        </td>
+        {page === "locations" ? (
+          <td>
+            <AvatarGroup
+              characters={getCharacters(item.residents)}
+              count={item.residents.length}
+            />
+          </td>
+        ) : (
+          <td>
+            <AvatarGroup
+              characters={getCharacters(item.characters)}
+              count={item.characters.length}
+            />
+          </td>
+        )}
       </tr>
     ));
   };

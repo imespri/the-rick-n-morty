@@ -1,6 +1,7 @@
 import "./Locations.scss";
 import { useState, useEffect } from "react";
 import { DataTable } from "@/components/DataTable/DataTable";
+import { Spinner } from "@/components/Spinner/Spinner";
 import { fetchLocations, fetchCharactersByIds } from "@/services";
 import { getCharacterIds } from "@/utils/getCharacterIds";
 
@@ -35,7 +36,7 @@ export function Locations() {
       <div className="locations__wrapper wrapper">
         <h2 className="locations__header">Locations</h2>
         {loading ? (
-          <p>loading....</p>
+          <Spinner />
         ) : (
           <DataTable
             page={"locations"}

@@ -1,6 +1,7 @@
 import "./Episodes.scss";
 import { useState, useEffect } from "react";
 import { DataTable } from "@/components/DataTable/DataTable";
+import { Spinner } from "@/components/Spinner/Spinner";
 import { fetchEpisodes, fetchCharactersByIds } from "@/services";
 import { getCharacterIds } from "@/utils/getCharacterIds";
 
@@ -35,7 +36,7 @@ export function Episodes() {
       <div className="episodes__wrapper wrapper">
         <h2 className="episodes__header">Episodes</h2>
         {loading ? (
-          <p>loading....</p>
+          <Spinner />
         ) : (
           <DataTable
             page="episodes"

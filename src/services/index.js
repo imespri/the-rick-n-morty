@@ -37,9 +37,9 @@ export const fetchEpisodesById = async (id) => {
   }
 };
 
-export const fetchLocations = async () => {
+export const fetchLocations = async (page) => {
   try {
-    const response = await fetch(`${API}/location`);
+    const response = await fetch(`${API}/location/?page=${page}`);
     return await response.json();
   } catch ({ message }) {
     throw message;

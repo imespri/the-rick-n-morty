@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "@/styles/constants" as const;
+@use "@/styles/mixins" as mixins;
+
+.pagination {
+  margin: 75px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+
+.pagination__numbers {
+  display: flex;
+  gap: 20px;
+  align-items: end;
+}
+
+.pagination__button {
+  padding: 10px 25px;
+  font-size: map.get(const.$font-size, m);
+  font-weight: const.$font-weight-bold;
+  color: const.$color-font-light-regular;
+  background-color: const.$color-accent;
+  border: none;
+  border-radius: const.$border-radius-md;
+  transition: const.$transition;
+  cursor: pointer;
+
+  &--active {
+    color: const.$color-accent-text;
+  }
+
+  &:hover {
+    background-color: const.$color-accent-2;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    background-color: const.$color-accent;
+    cursor: default;
+  }
+}

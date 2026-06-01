@@ -1,8 +1,8 @@
 import "./Pagination.scss";
 import classNames from "classnames";
 
-export function Pagination({ pageInfo, pageNumber, setPageNumber }) {
-  const handlePage = (num) => setPageNumber(num);
+export function Pagination({ pageInfo, pageNumber, setPage }) {
+  const handlePage = (num) => setPage(num);
 
   const createNumButtons = () => {
     let labels = [];

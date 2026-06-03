@@ -1,10 +1,10 @@
 import "./MainLogo.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function MainLogo() {
   return (
-    <Link to="/">
+    <NavLink to="/?page=1&name=">
       <span className="main-logo" />
-    </Link>
+    </NavLink>
   );
 }

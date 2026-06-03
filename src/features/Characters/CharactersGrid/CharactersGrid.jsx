@@ -17,7 +17,7 @@ export function CharactersGrid({ characters, handleCharacterCardClick }) {
   return (
     <>
       {noResultsUL}
-      <section className="characters__grid wrapper">{cardsUI}</section>;
+      <section className="characters__grid wrapper">{cardsUI}</section>
     </>
   );
 }

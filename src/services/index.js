@@ -1,9 +1,10 @@
 const API = "https://rickandmortyapi.com/api";
 
-export const fetchCharactersByQuery = async (query) => {
+export const fetchCharactersByQuery = async (query, page) => {
   try {
-    const str = query === "" ? "" : `?name=${query}`;
-    const response = await fetch(`${API}/character/${str}`);
+    const response = await fetch(
+      `${API}/character/?page=${page}&name=${query}`,
+    );
     return await response.json();
   } catch ({ message }) {
     throw message;
